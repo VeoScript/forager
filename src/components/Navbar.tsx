@@ -8,7 +8,9 @@ const Navbar: React.FC = () => {
     <div className="fixed top-0 z-10 flex flex-row items-center justify-center w-full max-w-full py-3 bg-pure-white border-b border-black-matt border-opacity-10">
       <div className="flex flex-row items-center justify-between w-full max-w-5xl">
         <div className="flex justify-start w-full">
-          <h3 className="font-bold text-base">FORAGER</h3>
+          <Link href="/">
+            <a className="font-bold text-base">FORAGER</a>
+          </Link>
         </div>
         <div className="flex justify-center w-full">
           <div className="flex items-center w-full max-w-[15rem] px-2 bg-light-gray bg-opacity-5 border border-black-matt border-opacity-10 focus-within:border-light-gray">
