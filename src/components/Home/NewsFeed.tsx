@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
+import Link from 'next/link'
 import { newsfeed } from '~/mock'
-import { RiHeartLine, RiBookmarkLine } from 'react-icons/ri'
+import { RiHeartLine, RiBookmarkLine, RiChat1Line, RiSendPlane2Line } from 'react-icons/ri'
 
 const NewsFeed: React.FC = () => {
   return (
@@ -37,7 +38,7 @@ const NewsFeed: React.FC = () => {
                   >
                     <RiHeartLine />
                   </button>
-                  <span className="text-xs">{ feed.reaction }</span>
+                  <span className="text-[10px] text-light-gray">{ feed.reaction }</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <button
@@ -45,24 +46,49 @@ const NewsFeed: React.FC = () => {
                   >
                     <RiBookmarkLine />
                   </button>
-                  <span className="text-xs">{ feed.bookmarked }</span>
+                  <span className="text-[10px] text-light-gray">{ feed.bookmarked }</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <button
+                    type="button"
+                  >
+                    <RiChat1Line />
+                  </button>
+                  <span className="text-[10px] text-light-gray">{ feed.comments }</span>
                 </div>
               </div>
             </div>
             <div className="flex flex-col w-full">
               <div className="flex flex-col w-full font-bold text-sm">
                 {feed.ingredients.map((ingredient: any, i: any) => (
-                  <span className="p-3 w-full bg-light-gray bg-opacity-20 border-b border-black-matt border-opacity-10" key={i}>
+                  <span className="p-3 w-full bg-dark-gray bg-opacity-10 border-b border-black-matt border-opacity-10" key={i}>
                     { ingredient.name }
                   </span>
                 ))}
               </div>
+              <div className="flex flex-col w-full">
+                {feed.commentlist.map((comment: any, i: any) => (
+                  <div className="flex flex-col px-5 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={i}>
+                    <Link href="/">
+                      <a className="font-bold text-xs hover:underline">&gt; { comment.name }</a>
+                    </Link>
+                    <p className="font-normal text-[10px]">{ comment.message }</p>
+                  </div>
+                ))}
+              </div>
               <div className="flex flex-row items-center w-full">
-                <div className="flex items-center w-full px-2 bg-pure-white">
+                <div className="flex items-center w-full py-3 bg-pure-white">
                   <input
-                    className="font-normal text-xs w-full p-3 outline-none bg-transparent"
+                    className="font-normal text-xs w-full px-5 outline-none bg-transparent"
                     type="text"
-                    placeholder="Add a comment..." />
+                    placeholder="Add a comment..."
+                  />
+                  <button
+                    className="flex text-xl px-3 border-l border-black-matt border-opacity-10"
+                    type="button"
+                  >
+                    <RiSendPlane2Line />
+                  </button>
                 </div>
               </div>
             </div>

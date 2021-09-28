@@ -42,8 +42,23 @@ export const newsfeed = [
         name: 'Sugar'
       }
     ],
+    commentlist: [
+      {
+        name: 'Richlyn Hermosilla',
+        message: 'I love you my Lili.'
+      },
+      {
+        name: 'Jerome Villaruel',
+        message: 'Mahal ko kayong dalawa ni babsy.'
+      },
+      {
+        name: 'Staind',
+        message: 'Cause I must be sleeping'
+      }
+    ],
     reaction: '43',
     bookmarked: '115',
+    comments: '190',
   },
   {
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Jennie_Kim_from_BLACKPINK_PUBG_210321_%28cropped%29.jpg',
@@ -65,8 +80,19 @@ export const newsfeed = [
         name: 'Buhok Sa Ilok'
       }
     ],
+    commentlist: [
+      {
+        name: 'Carl Whistle',
+        message: 'Bubulong, ako sayo mamayang madaling araw!'
+      },
+      {
+        name: 'Sylvister Istalong',
+        message: 'Eat talong to fulfil your happiness.'
+      }
+    ],
     reaction: '1k',
     bookmarked: '50k',
+    comments: '148',
   },
   {
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKJzUVFy_ecmb3RjxXgLZ-JsxIAOd4tldbrA&usqp=CAU',
@@ -91,8 +117,23 @@ export const newsfeed = [
         name: 'PINEAPPLE'
       }
     ],
+    commentlist: [
+      {
+        name: 'Chelyn Lee',
+        message: 'Hi how are you?'
+      },
+      {
+        name: 'Akisha Faye',
+        message: 'You look so funny tonight.'
+      },
+      {
+        name: 'Loraine Bacacon',
+        message: 'Let me tell you a lie.'
+      }
+    ],
     reaction: '100k',
     bookmarked: '809',
+    comments: '50',
   },
   {
     avatar: 'https://pbs.twimg.com/media/EzH3-JTXIAAH6H9.jpg',
@@ -111,7 +152,18 @@ export const newsfeed = [
         name: 'Ammonium Sulfide'
       }
     ],
+    commentlist: [
+      {
+        name: 'Carl Torres',
+        message: 'Gwapa ka.'
+      },
+      {
+        name: 'Keziah Reign',
+        message: 'Take care always wherever you go.'
+      }
+    ],
     reaction: '1M',
     bookmarked: '5M',
+    comments: '380',
   }
 ]
