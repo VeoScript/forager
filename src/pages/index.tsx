@@ -1,6 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
+import Layout from '~/layouts/default'
+import NewsFeed from '~/components/Home/NewsFeed'
+import Trending from '~/components/Home/Trending'
 
 const Home: NextPage = () => {
   return (
@@ -8,9 +11,12 @@ const Home: NextPage = () => {
       <Head>
         <title>Forager</title>
       </Head>
-      <div className="font-poppins flex flex-row items-center justify-center w-full h-screen">
-        <h1 className="font-bold text-2xl">Welcome to Forager</h1>
-      </div>
+      <Layout>
+        <div className="flex flex-row items-center w-full h-full space-x-5">
+          <NewsFeed />
+          <Trending />
+        </div>
+      </Layout>
     </React.Fragment>
   )
 }
