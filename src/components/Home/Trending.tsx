@@ -7,7 +7,7 @@ const Trending: React.FC = () => {
   return (
     <div className="relative flex flex-col w-full max-w-sm h-full py-6 space-y-3">
       <div className="fixed z-0 flex-flex-col w-full space-y-5">
-        <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex flex-row items-center justify-between w-full max-w-sm">
           <div className="flex flex-row items-center justify-start space-x-2">
             <img
               className="w-16 h-16 object-cover rounded-full"
@@ -25,6 +25,14 @@ const Trending: React.FC = () => {
                 My Kind Of Bio
               </p>
             </div>
+          </div>
+          <div className="flex">
+            <button
+              className="px-3 py-2 text-sm border border-black-matt border-opacity-10 hover:border-light-gray"
+              type="button"
+            >
+              Create
+            </button>
           </div>
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-3">
