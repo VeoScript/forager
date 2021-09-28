@@ -12,10 +12,10 @@ const NewsFeed: React.FC = () => {
             <div className="flex flex-row items-center justify-start space-x-2">
               <img
                 className="w-10 h-10 object-cover rounded-full"
-                src="https://avatars.githubusercontent.com/u/26340308?v=4"
+                src={ feed.avatar }
                 alt="profile"
               />
-              <div className="flex flex-col w-full">
+              <div className="flex flex-col">
                 <h3 className="font-semibold text-sm">{ feed.name }</h3>
                 <h6 className="font-light text-xs">{ feed.username }</h6>
               </div>
