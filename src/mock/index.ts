@@ -1,7 +1,7 @@
 export const trending = [
   {
     name: 'Onion',
-    recipes: '100 Possible recipes'
+    recipes: '100 Possible recipes lorem'
   },
   {
     name: 'Muriatic Acid',
@@ -45,7 +45,7 @@ export const newsfeed = [
     commentlist: [
       {
         name: 'Richlyn Hermosilla',
-        message: 'I love you my Lili.'
+        message: 'I love you my Lili. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam tenetur vero obcaecati expedita hic perferendis saepe sed, consectetur ex rem minima nulla porro nihil sequi! Accusamus ea voluptatibus maiores beatae?'
       },
       {
         name: 'Jerome Villaruel',

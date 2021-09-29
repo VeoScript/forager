@@ -70,7 +70,7 @@ const NewsFeed: React.FC = () => {
                 {feed.commentlist.map((comment: any, i: any) => (
                   <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={i}>
                     <Link href="/">
-                      <a className="font-bold text-xs hover:underline">&gt; { comment.name }</a>
+                      <a className="font-bold text-[10px] hover:underline">{ comment.name }</a>
                     </Link>
                     <p className="font-normal text-[10px]">{ comment.message }</p>
                   </div>

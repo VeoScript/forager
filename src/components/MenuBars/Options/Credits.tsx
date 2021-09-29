@@ -46,6 +46,9 @@ const Credits: React.FC = () => {
           </a>
         </Link>
       </div>
+      <div className="flex w-full px-5 py-3">
+        <span className="font-normal text-xs text-light-gray text-opacity-50">© { new Date().getFullYear() } FORAGER FROM VOIDEV</span>
+      </div>
     </React.Fragment>
   )
 }
