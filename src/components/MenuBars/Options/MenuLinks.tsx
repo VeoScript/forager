@@ -33,6 +33,16 @@ const MenuLinks: React.FC = () => {
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
+        <button
+          className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-red-500 hover:bg-opacity-10"
+          type="button"
+          onClick={() => {
+            console.log('Logged Out Button')
+          }}
+        >
+          <span className="text-[13px] text-red-500">Log Out</span>
+          <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
+        </button>
       </div>
     </React.Fragment>
   )
