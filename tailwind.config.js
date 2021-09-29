@@ -17,7 +17,7 @@ module.exports = {
         'light-gray': '#7F7F7F',
       },
       fontFamily: {
-        poppins: ['Poppins', ...defaultTheme.fontFamily.serif],
+        poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
       }
     },
   },
