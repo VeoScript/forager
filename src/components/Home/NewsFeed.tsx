@@ -59,7 +59,7 @@ const NewsFeed: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col w-full">
-              <div className="flex flex-col w-full font-bold text-xs">
+              <div className="flex flex-col w-full font-bold text-sm">
                 {feed.ingredients.map((ingredient: any, i: any) => (
                   <span className="p-3 w-full bg-dark-gray bg-opacity-10 border-b border-black-matt border-opacity-10" key={i}>
                     { ingredient.name }
