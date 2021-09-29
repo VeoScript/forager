@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
+import Credits from './Credits'
 import { trending } from '~/mock'
 
 const Trending: React.FC = () => {
   return (
-    <div className="relative flex flex-col w-full max-w-sm h-full py-6 space-y-3">
-      <div className="fixed z-0 flex-flex-col w-full space-y-5">
+    <div className="relative hidden md:flex flex-col w-full max-w-sm h-full py-6 space-y-3">
+      <div className="fixed flex-flex-col w-full max-w-sm space-y-5">
         <div className="flex flex-row items-center justify-between w-full max-w-sm">
           <div className="flex flex-row items-center justify-start space-x-2">
             <img
-              className="w-16 h-16 object-cover rounded-full"
+              className="w-16 h-16 object-cover rounded-full bg-dark-gray bg-opacity-20"
               src="https://avatars.githubusercontent.com/u/26340308?v=4"
               alt="profile"
             />
@@ -36,9 +37,16 @@ const Trending: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-3">
-          <div className="flex flex-col w-full">
-            <h3 className="font-bold text-lg text-dark-gray">Trending</h3>
-            <p className="font-light text-xs text-dark-gray">Trend spices mixed with love.</p>
+          <div className="flex flex-row items-center w-full">
+            <div className="flex flex-col w-full">
+              <h3 className="font-bold text-lg text-dark-gray">Trending</h3>
+              <p className="font-light text-xs text-dark-gray">Trend spices mixed with love.</p>
+            </div>
+            <div className="flex justify-end w-full">
+              <Link href="/">
+                <a className="font-normal text-xs hover:underline">See More</a>
+              </Link>
+            </div>
           </div>
           <div className="flex flex-col w-full space-y-1">
             {trending.map((trend: any, i: any) => (
@@ -51,6 +59,7 @@ const Trending: React.FC = () => {
             ))}
           </div>
         </div>
+        <Credits />
       </div>
     </div>
   )

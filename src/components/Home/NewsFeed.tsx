@@ -6,13 +6,13 @@ import { RiHeartLine, RiBookmarkLine, RiChat1Line, RiSendPlane2Line } from 'reac
 
 const NewsFeed: React.FC = () => {
   return (
-    <div className="flex flex-col w-full h-full mt-2 space-y-3">
+    <div className="flex flex-col w-full h-full mt-2 space-y-2 md:space-y-3">
       {newsfeed.map((feed: any, i:any) => (
         <div className="flex flex-col w-full max-w-full h-auto border border-black-matt border-opacity-10 bg-pure-white transition ease-in-out duration-200 hover:shadow-md" key={i}>
           <div className="flex flex-row items-center p-3 justify-between w-full">
             <div className="flex flex-row items-center justify-start space-x-2">
               <img
-                className="w-10 h-10 object-cover rounded-full"
+                className="w-10 h-10 object-cover rounded-full bg-dark-gray bg-opacity-20"
                 src={ feed.avatar }
                 alt="profile"
               />
@@ -68,7 +68,7 @@ const NewsFeed: React.FC = () => {
               </div>
               <div className="flex flex-col w-full">
                 {feed.commentlist.map((comment: any, i: any) => (
-                  <div className="flex flex-col px-5 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={i}>
+                  <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={i}>
                     <Link href="/">
                       <a className="font-bold text-xs hover:underline">&gt; { comment.name }</a>
                     </Link>
