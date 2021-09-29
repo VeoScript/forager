@@ -25,7 +25,7 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
               setMenuOpen(true)
             }}
           >
-            <RiMenu5Fill className="w-7 h-7 transition ease-in-out duration-200 hover:scale-95" />
+            <RiMenu5Fill className="w-5 h-5 transition ease-in-out duration-200 hover:scale-95" />
           </button>
         </div>
         <div className="flex justify-center md:justify-start w-full">
@@ -45,28 +45,28 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
         <div className="hidden md:flex justify-end w-full space-x-3">
           <Link href="/">
             <a className="font-light">
-              <RiHome5Line className="w-7 h-7" />
+              <RiHome5Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
             </a>
           </Link>
           <Link href="/">
             <a className="font-light">
-              <RiCompass3Line className="w-7 h-7" />
+              <RiCompass3Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
             </a>
           </Link>
           <Link href="/">
             <a className="font-light">
-              <RiHeartLine className="w-7 h-7" />
+              <RiHeartLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
             </a>
           </Link>
           <Link href="/">
             <a className="font-light">
-              <RiBookmarkLine className="w-7 h-7" />
+              <RiBookmarkLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
             </a>
           </Link>
           <Link href="/">
             <a>
               <img
-                className="w-7 h-7 object-cover rounded-full bg-dark-gray bg-opacity-20"
+                className="w-6 h-6 object-cover rounded-full bg-dark-gray bg-opacity-20 transition ease-in-out duration-200 hover:scale-95"
                 src="https://avatars.githubusercontent.com/u/26340308?v=4"
                 alt="profile" />
             </a>
@@ -76,7 +76,7 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
           <Link href="/">
             <a>
               <img
-                className="w-7 h-7 object-cover rounded-full bg-dark-gray bg-opacity-30"
+                className="w-6 h-6 object-cover rounded-full bg-dark-gray bg-opacity-30 transition ease-in-out duration-200 hover:scale-95"
                 src="https://avatars.githubusercontent.com/u/26340308?v=4"
                 alt="profile" />
             </a>

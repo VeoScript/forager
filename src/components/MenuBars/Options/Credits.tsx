@@ -6,42 +6,42 @@ const Credits: React.FC = () => {
   return (
     <React.Fragment>
       <div className="flex w-full px-5 py-3 bg-light-gray bg-opacity-5 border-b border-black-matt border-opacity-10">
-        <h3 className="font-normal text-sm uppercase">Credits</h3>
+        <h3 className="font-semibold text-xs uppercase">Credits</h3>
       </div>
       <div className="flex flex-col w-full">
         <Link href="/">
           <a className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <h1 className="text-sm">About</h1>
+            <h1 className="text-[13px]">About</h1>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
         <Link href="/">
           <a className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <span className="text-sm">Help</span>
+            <span className="text-[13px]">Help</span>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
         <Link href="/">
           <a className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <span className="text-sm">Privacy</span>
+            <span className="text-[13px]">Privacy</span>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
         <Link href="/">
           <a className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <span className="text-sm">Terms</span>
+            <span className="text-[13px]">Terms</span>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
         <Link href="/">
           <a className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <span className="text-sm">Developers</span>
+            <span className="text-[13px]">Developers</span>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
         <Link href="/">
           <a className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <span className="text-sm">Source Code</span>
+            <span className="text-[13px]">Source Code</span>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>

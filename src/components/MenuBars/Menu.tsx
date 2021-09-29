@@ -27,7 +27,7 @@ const Menu: React.FC<TypeProps> = ({ isMenuOpen, setMenuOpen }) => {
                 <RiCloseLine className="w-6 h-6" />
               </button>
               <div className="flex justify-center w-full">
-                <h3 className="font-normal text-base">Options</h3>
+                <h3 className="font-normal text-sm">Options</h3>
               </div>
             </div>
             <div className="flex flex-col w-full">
