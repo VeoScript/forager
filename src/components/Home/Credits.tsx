@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Credits: React.FC = () => {
   return (
-    <div className="flex flex-col w-full max w-sm space-y-3 text-light-gray text-opacity-50">
+    <div className="flex flex-col w-full max w-sm space-y-0.5 text-light-gray text-opacity-50">
       <div className="flex items-center w-full space-x-1">
         <div className="flex">
           <Link href="/">
@@ -15,7 +15,7 @@ const Credits: React.FC = () => {
         <span className="text-[10px]">&bull;</span>
         <div className="flex">
           <Link href="/">
-            <a className="font-normal text-[11px] hover:underline">
+            <a className="font-normal text-[10px] hover:underline">
               Help
             </a>
           </Link>
@@ -23,7 +23,7 @@ const Credits: React.FC = () => {
         <span className="text-[10px]">&bull;</span>
         <div className="flex">
           <Link href="/">
-            <a className="font-normal text-[11px] hover:underline">
+            <a className="font-normal text-[10px] hover:underline">
               Privacy
             </a>
           </Link>
@@ -31,7 +31,7 @@ const Credits: React.FC = () => {
         <span className="text-[10px]">&bull;</span>
         <div className="flex">
           <Link href="/">
-            <a className="font-normal text-[11px] hover:underline">
+            <a className="font-normal text-[10px] hover:underline">
               Terms
             </a>
           </Link>
@@ -39,7 +39,7 @@ const Credits: React.FC = () => {
         <span className="text-[10px]">&bull;</span>
         <div className="flex">
           <Link href="/">
-            <a className="font-normal text-[11px] hover:underline">
+            <a className="font-normal text-[10px] hover:underline">
               Developers
             </a>
           </Link>
@@ -47,14 +47,14 @@ const Credits: React.FC = () => {
         <span className="text-[10px]">&bull;</span>
         <div className="flex">
           <Link href="/">
-            <a className="font-normal text-[11px] hover:underline">
+            <a className="font-normal text-[10px] hover:underline">
               Source Code
             </a>
           </Link>
         </div>
       </div>
       <div className="flex w-full">
-        <span className="font-normal text-xs">© { new Date().getFullYear() } FORAGER FROM VOIDEV</span>
+        <span className="font-normal text-[10px]">© { new Date().getFullYear() } FORAGER FROM VOIDEV</span>
       </div>
     </div>
   )
