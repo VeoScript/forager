@@ -52,7 +52,7 @@ const Trending: React.FC = () => {
             {trending.map((trend: any, i: any) => (
               <Link href="/" key={i}>
                 <a className="flex flex-row items-center justify-between w-full p-3 border border-black-matt border-opacity-10 hover:bg-light-gray hover:bg-opacity-10">
-                  <span className="font-bold text-sm">{ trend.name }</span>
+                  <span className="font-bold text-xs">{ trend.name }</span>
                   <span className="font-normal text-[10px]">{ trend.recipes }</span>
                 </a>
               </Link>
