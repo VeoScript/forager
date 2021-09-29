@@ -6,15 +6,25 @@ import {
   RiSearchLine,
   RiHome5Line,
   RiCompass3Line,
-  RiBookmarkLine
+  RiBookmarkLine,
+  RiHeartLine
 } from 'react-icons/ri'
 
-const NavBar: React.FC = () => {
+interface TypeProps {
+  setMenuOpen: any
+}
+
+const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
   return (
     <div className="fixed top-0 z-10 flex flex-row items-center justify-center w-full max-w-full px-5 py-3 bg-pure-white border-b border-black-matt border-opacity-10">
       <div className="flex flex-row items-center justify-between w-full max-w-5xl">
         <div className="flex md:hidden w-full">
-          <button type="button">
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(true)
+            }}
+          >
             <RiMenu5Fill className="w-7 h-7 transition ease-in-out duration-200 hover:scale-95" />
           </button>
         </div>
@@ -41,6 +51,11 @@ const NavBar: React.FC = () => {
           <Link href="/">
             <a className="font-light">
               <RiCompass3Line className="w-7 h-7" />
+            </a>
+          </Link>
+          <Link href="/">
+            <a className="font-light">
+              <RiHeartLine className="w-7 h-7" />
             </a>
           </Link>
           <Link href="/">
