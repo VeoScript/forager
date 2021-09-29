@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
+import ProfileDropdown from './Dropdown/ProfileDropdown'
 import {
   RiMenu5Fill,
   RiSearchLine,
@@ -63,14 +64,7 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
               <RiBookmarkLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
             </a>
           </Link>
-          <Link href="/">
-            <a>
-              <img
-                className="w-6 h-6 object-cover rounded-full bg-dark-gray bg-opacity-20 transition ease-in-out duration-200 hover:scale-95"
-                src="https://avatars.githubusercontent.com/u/26340308?v=4"
-                alt="profile" />
-            </a>
-          </Link>
+          <ProfileDropdown />
         </div>
         <div className="flex md:hidden justify-end w-full">
           <Link href="/">
