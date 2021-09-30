@@ -1,10 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
+import CreateModal from '../Create/CreateModal'
 import { useRouter } from 'next/router'
 import {
   RiSearchLine,
-  RiAddBoxLine,
-  RiAddBoxFill,
   RiHome5Line,
   RiHome5Fill,
   RiBookmarkLine,
@@ -34,16 +33,7 @@ const BottomBar: React.FC = () => {
           <RiSearchLine className="w-7 h-7" />
         </a>
       </Link>
-      <Link href="/create">
-        <a className="font-light">
-          {router.pathname === '/create' && (
-            <RiAddBoxFill className="w-7 h-7" />
-          )}
-          {router.pathname !== '/create' && (
-            <RiAddBoxLine className="w-7 h-7" />
-          )}
-        </a>
-      </Link>
+      <CreateModal />
       <Link href="/activities">
         <a className="font-light">
           {router.pathname === '/activities' && (
