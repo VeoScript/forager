@@ -62,12 +62,12 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
               )}
             </a>
           </Link>
-          <Link href="/discover">
+          <Link href="/explore">
             <a className="font-light">
-              {router.pathname === '/discover' && (
+              {router.pathname === '/explore' && (
                 <RiCompass3Fill className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
               )}
-              {router.pathname !== '/discover' && (
+              {router.pathname !== '/explore' && (
                 <RiCompass3Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
               )}
             </a>

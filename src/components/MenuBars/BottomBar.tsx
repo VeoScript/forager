@@ -28,7 +28,7 @@ const BottomBar: React.FC = () => {
           )}
         </a>
       </Link>
-      <Link href="/discover">
+      <Link href="/explore">
         <a className="font-light">
           <RiSearchLine className="w-7 h-7" />
         </a>
