@@ -10,30 +10,35 @@ const Trending: React.FC = () => {
       <div className="fixed flex-flex-col w-full max-w-sm space-y-5">
         <div className="flex flex-row items-center justify-between w-full max-w-sm">
           <div className="flex flex-row items-center justify-start space-x-2">
-            <img
-              className="w-16 h-16 object-cover rounded-full bg-dark-gray bg-opacity-20"
-              src="https://avatars.githubusercontent.com/u/26340308?v=4"
-              alt="profile"
-            />
+            <Link href="/">
+              <a>
+                <img
+                  className="w-16 h-16 object-cover rounded-full bg-dark-gray bg-opacity-20"
+                  src="https://avatars.githubusercontent.com/u/26340308?v=4"
+                  alt="profile"
+                />
+              </a>
+            </Link>
             <div className="flex flex-col space-y-0.5">
               <div className="flex flex-col -space-y-1">
                 <Link href="/">
-                  <a className="font-semibold text-base hover:underline">Lisa Manoban</a>
+                  <a className="font-semibold text-base">Lisa Manoban</a>
                 </Link>
-                <h6 className="ffont-light text-xs">lalalalisa_m</h6>
+                <Link href="/">
+                  <a className="font-light text-xs hover:underline">lalalalisa_m</a>
+                </Link>
               </div>
-              <p className="font-semibold text-sm">
+              <p className="font-semibold text-xs">
                 My Kind Of Bio
               </p>
             </div>
           </div>
           <div className="flex">
-            <button
-              className="px-3 py-2 text-sm border border-black-matt border-opacity-10 hover:border-light-gray"
-              type="button"
-            >
-              Create
-            </button>
+            <Link href="/create">
+              <a className="px-3 py-2 text-sm border border-black-matt border-opacity-10 hover:border-light-gray">
+                Create
+              </a>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-3">

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import {
   RiSearchLine,
   RiAddBoxLine,
+  RiAddBoxFill,
   RiHome5Line,
   RiHome5Fill,
   RiBookmarkLine,
@@ -33,15 +34,16 @@ const BottomBar: React.FC = () => {
           <RiSearchLine className="w-7 h-7" />
         </a>
       </Link>
-      <button
-        className="font-light"
-        type="button"
-        onClick={() => {
-          console.log('Create Post Button')
-        }}
-      >
-        <RiAddBoxLine className="w-7 h-7" />
-      </button>
+      <Link href="/create">
+        <a className="font-light">
+          {router.pathname === '/create' && (
+            <RiAddBoxFill className="w-7 h-7" />
+          )}
+          {router.pathname !== '/create' && (
+            <RiAddBoxLine className="w-7 h-7" />
+          )}
+        </a>
+      </Link>
       <Link href="/activities">
         <a className="font-light">
           {router.pathname === '/activities' && (

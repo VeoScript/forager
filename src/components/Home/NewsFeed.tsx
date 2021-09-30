@@ -11,14 +11,22 @@ const NewsFeed: React.FC = () => {
         <div className="flex flex-col w-full max-w-full h-auto border border-black-matt border-opacity-10 bg-pure-white transition ease-in-out duration-200 hover:shadow-md" key={i}>
           <div className="flex flex-row items-center p-3 justify-between w-full">
             <div className="flex flex-row items-center justify-start space-x-2">
-              <img
-                className="w-10 h-10 object-cover rounded-full bg-dark-gray bg-opacity-20"
-                src={ feed.avatar }
-                alt="profile"
-              />
+              <Link href="/">
+                <a>
+                  <img
+                    className="w-10 h-10 object-cover rounded-full bg-dark-gray bg-opacity-20"
+                    src={ feed.avatar }
+                    alt="profile"
+                  />
+                </a>
+              </Link>
               <div className="flex flex-col">
-                <h3 className="font-semibold text-sm">{ feed.name }</h3>
-                <h6 className="font-light text-xs">{ feed.username }</h6>
+                <Link href="/">
+                  <a className="font-semibold text-sm">{ feed.name }</a>
+                </Link>
+                <Link href="/">
+                  <a className="font-light text-xs hover:underline">{ feed.username }</a>
+                </Link>
               </div>
             </div>
             <div className="flex flex-row items-center justify-end">
@@ -28,8 +36,8 @@ const NewsFeed: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full px-3 py-2 border-b border-black-matt border-opacity-10">
-            <span className="font-normal text-xs">{ feed.description }</span>
+          <div className="flex flex-col w-full px-3 border-b border-black-matt border-opacity-10">
+            <span className="font-normal text-sm pt-2 pb-5">{ feed.description }</span>
           </div>
           <div className="flex flex-col w-full mt-2 space-y-2">
             <div className="flex flex-row items-center justify-between w-full px-3">
@@ -73,9 +81,9 @@ const NewsFeed: React.FC = () => {
                 {feed.commentlist.map((comment: any, i: any) => (
                   <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={i}>
                     <Link href="/">
-                      <a className="font-bold text-[10px] hover:underline">{ comment.name }</a>
+                      <a className="font-bold text-xs hover:underline">{ comment.name }</a>
                     </Link>
-                    <p className="font-normal text-[10px]">{ comment.message }</p>
+                    <p className="font-normal text-[11px]">{ comment.message }</p>
                   </div>
                 ))}
               </div>

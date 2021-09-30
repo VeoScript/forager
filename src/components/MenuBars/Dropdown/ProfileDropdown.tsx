@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
-import { RiUser3Line, RiSettings3Line } from 'react-icons/ri'
+import { RiUser3Line, RiAddBoxLine, RiSettings3Line } from 'react-icons/ri'
 
 const ProfileDropdown: React.FC = () => {
   
@@ -35,6 +35,12 @@ const ProfileDropdown: React.FC = () => {
                 <a className="flex flex-row items-center w-full px-3 py-2 space-x-2 hover:bg-light-gray hover:bg-opacity-5">
                   <RiUser3Line />
                   <span className="text-xs">Profile</span>
+                </a>
+              </Link>
+              <Link href="/create">
+                <a className="flex flex-row items-center w-full px-3 py-2 space-x-2 hover:bg-light-gray hover:bg-opacity-5">
+                  <RiAddBoxLine />
+                  <span className="text-xs">Create</span>
                 </a>
               </Link>
               <Link href="/">
