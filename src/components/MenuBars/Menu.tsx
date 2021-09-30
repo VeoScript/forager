@@ -37,9 +37,9 @@ const Menu: React.FC<TypeProps> = ({ isMenuOpen, setMenuOpen }) => {
               </div>
             </div>
             <div className="flex flex-col w-full">
-              <MenuLinks />
-              <AccountLinks />
-              <Credits />
+              <MenuLinks setMenuOpen={setMenuOpen} />
+              <AccountLinks setMenuOpen={setMenuOpen} />
+              <Credits setMenuOpen={setMenuOpen} />
             </div>
           </div>
         </React.Fragment>

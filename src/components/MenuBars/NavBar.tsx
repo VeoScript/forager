@@ -1,14 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import ProfileDropdown from './Dropdown/ProfileDropdown'
 import {
   RiMenu5Fill,
   RiSearchLine,
   RiHome5Line,
+  RiHome5Fill,
   RiCompass3Line,
+  RiCompass3Fill,
   RiBookmarkLine,
-  RiHeartLine
+  RiBookmarkFill,
+  RiHeartLine,
+  RiHeartFill
 } from 'react-icons/ri'
 
 interface TypeProps {
@@ -16,6 +21,9 @@ interface TypeProps {
 }
 
 const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
+
+  const router = useRouter()
+  
   return (
     <div className="fixed top-0 z-10 flex flex-row items-center justify-center w-full max-w-full px-5 py-3 bg-pure-white border-b border-black-matt border-opacity-10">
       <div className="flex flex-row items-center justify-between w-full max-w-5xl">
@@ -46,22 +54,42 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
         <div className="hidden md:flex justify-end w-full space-x-3">
           <Link href="/">
             <a className="font-light">
-              <RiHome5Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              {router.pathname === '/' && (
+                <RiHome5Fill className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
+              {router.pathname !== '/' && (
+                <RiHome5Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/discover">
             <a className="font-light">
-              <RiCompass3Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              {router.pathname === '/discover' && (
+                <RiCompass3Fill className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
+              {router.pathname !== '/discover' && (
+                <RiCompass3Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/activities">
             <a className="font-light">
-              <RiHeartLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              {router.pathname === '/activities' && (
+                <RiHeartFill className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
+              {router.pathname !== '/activities' && (
+                <RiHeartLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/bookmarks">
             <a className="font-light">
-              <RiBookmarkLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              {router.pathname === '/bookmarks' && (
+                <RiBookmarkFill className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
+              {router.pathname !== '/bookmarks' && (
+                <RiBookmarkLine className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
+              )}
             </a>
           </Link>
           <ProfileDropdown />
