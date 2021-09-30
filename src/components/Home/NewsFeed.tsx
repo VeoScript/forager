@@ -76,8 +76,8 @@ const NewsFeed: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <div className="flex flex-row items-center w-full">
-                <div className="flex items-center w-full py-3 bg-pure-white">
+              <div className="flex flex-col items-center w-full">
+                <div className="flex items-center w-full py-3 bg-pure-white border-b border-black-matt border-opacity-10">
                   <input
                     className="font-normal text-xs w-full px-5 outline-none bg-transparent"
                     type="text"
@@ -89,6 +89,11 @@ const NewsFeed: React.FC = () => {
                   >
                     <RiSendPlane2Line />
                   </button>
+                </div>
+                <div className="flex justify-center w-full py-2">
+                  <Link href="/">
+                    <a className="font-normal text-xs hover:underline">See more comments...</a>
+                  </Link>
                 </div>
               </div>
             </div>
