@@ -28,6 +28,7 @@ export const newsfeed = [
     username: 'lalalalisa_m',
     food: 'Filipino Adobo',
     tag: 'Philippine Food',
+    description: 'Sa mga tawo na gusto mag luto ug Adobo, dia ra ang mga possible na mga rekado. Pasalamat tawon mo oy nga naay naka hunahuna ing ani na social media.',
     ingredients: [
       {
         name: 'Onion'
@@ -66,6 +67,7 @@ export const newsfeed = [
     username: 'jennierubyjane',
     food: 'Kimchi',
     tag: 'Korean Food',
+    description: 'Gwapa ko, lami ko. Pero mas lami ning lutua suwayi na ninju!',
     ingredients: [
       {
         name: 'Taeng Hinog'
@@ -100,6 +102,7 @@ export const newsfeed = [
     username: 'roses_are_rosie',
     food: 'Pizza',
     tag: 'American Food',
+    description: 'Sa mga baje na gipang regla nya nag crave ug pizza, hala sunduga ning akong ingredients sa pag bake ug pizza',
     ingredients: [
       {
         name: 'Pan-os Na Pan'
@@ -141,6 +144,7 @@ export const newsfeed = [
     username: 'sooya',
     food: 'Sinigang Na Cyanide',
     tag: 'Toxic People Food',
+    description: 'Para sa mga tawo na toxic, dia ra injung requested ingredients.',
     ingredients: [
       {
         name: 'Muriatic Acid'
