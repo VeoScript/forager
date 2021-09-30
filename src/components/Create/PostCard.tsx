@@ -2,15 +2,19 @@ import React from 'react'
 import PublishButton from './PublishButton'
 import { RiAddLine } from 'react-icons/ri'
 
-const PostCard: React.FC = () => {
+interface TypeProps {
+  setIsOpen: any
+}
+
+const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
   return (
     <div className="flex flex-col md:flex-row w-full max-w-full px-3 py-5 md:p-3 space-x-0 space-y-2 md:space-x-2 md:space-y-0 bg-pure-white border border-black-matt border-opacity-10">
       {/* display create post form controls list */}
       <div className="flex flex-col w-full h-full space-y-2">
-        <div className="flex items-center justify-between w-full px-2">
+        <div className="flex items-center justify-between w-full">
           <h3 className="font-semibold text-base">Create Post</h3>
           <div className="flex md:hidden">
-            <PublishButton />
+            <PublishButton setIsOpen={setIsOpen} />
           </div>
         </div>
         <div className="flex flex-col w-full space-y-2">
@@ -68,7 +72,7 @@ const PostCard: React.FC = () => {
             </button>
           </div>
           <div className="hidden md:block">
-            <PublishButton />
+            <PublishButton setIsOpen={setIsOpen} />
           </div>
         </div>
       </div>

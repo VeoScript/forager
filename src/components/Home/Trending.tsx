@@ -2,6 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Credits from './Credits'
+import CreateModal from '../Create/CreateModal'
 import { trending } from '~/mock'
 
 const Trending: React.FC = () => {
@@ -34,11 +35,7 @@ const Trending: React.FC = () => {
             </div>
           </div>
           <div className="flex">
-            <Link href="/create">
-              <a className="px-3 py-2 text-sm border border-black-matt border-opacity-10 hover:border-light-gray">
-                Create
-              </a>
-            </Link>
+            <CreateModal />
           </div>
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-3">
