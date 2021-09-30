@@ -4,7 +4,7 @@ import { RiAddLine } from 'react-icons/ri'
 
 const PostCard: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-full p-3 space-x-0 space-y-2 md:space-x-2 md:space-y-0 bg-pure-white border border-black-matt border-opacity-10">
+    <div className="flex flex-col md:flex-row w-full max-w-full px-3 py-5 md:p-3 space-x-0 space-y-2 md:space-x-2 md:space-y-0 bg-pure-white border border-black-matt border-opacity-10">
       {/* display create post form controls list */}
       <div className="flex flex-col w-full h-full space-y-2">
         <div className="flex items-center justify-between w-full px-2">
@@ -14,7 +14,7 @@ const PostCard: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-col w-full space-y-2">
-          <div className="flex flex-row items-center w-full space-x-2">
+          <div className="flex flex-col md:flex-row items-center w-full space-x-0 space-y-2 md:space-x-2 md:space-y-0">
             <div className="flex flex-col w-full px-3 py-2 space-y-1 bg-ghost-white border border-black-matt border-opacity-10 focus-within:border-dark-gray">
               <div className="flex items-center justify-between w-full">
                 <span className="text-xs text-light-gray">Food Title</span>

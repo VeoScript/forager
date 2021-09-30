@@ -24,7 +24,7 @@ const Layout: React.FC<TypeProps> = ({ children }) => {
           />
           <BottomBar />
         </div>
-        <div className="flex flex-col items-center w-full max-w-5xl h-screen py-14 md:py-16">
+        <div className="flex flex-col items-center w-full max-w-5xl h-screen px-0 md:px-2 py-10 md:py-16">
           <div className="flex w-full max-w-full pb-10 md:pb-5">
             {children}
           </div>
