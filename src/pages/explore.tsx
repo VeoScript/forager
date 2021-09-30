@@ -3,19 +3,19 @@ import Head from 'next/head'
 import React from 'react'
 import Layout from '~/layouts/default'
 
-const Discover: NextPage = () => {
+const Explore: NextPage = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Discover | Forager</title>
+        <title>Explore | Forager</title>
       </Head>
       <Layout>
         <div className="flex flex-row items-center w-full h-full space-x-5">
-          Discover Page
+          Explore Page
         </div>
       </Layout>
     </React.Fragment>
   )
 }
 
-export default Discover
+export default Explore

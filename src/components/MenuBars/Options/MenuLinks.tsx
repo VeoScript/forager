@@ -19,9 +19,9 @@ const MenuLinks: React.FC<TypeProps> = ({ setMenuOpen }) => {
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
-        <Link href="/discover">
+        <Link href="/explore">
           <a onClick={() => setMenuOpen(false)} className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-light-gray hover:bg-opacity-10">
-            <span className="text-[13px]">Discover</span>
+            <span className="text-[13px]">Explore</span>
             <RiArrowRightSLine className="w-6 h-6 text-light-gray" />
           </a>
         </Link>
