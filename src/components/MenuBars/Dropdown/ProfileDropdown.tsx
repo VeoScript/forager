@@ -29,7 +29,7 @@ const ProfileDropdown: React.FC = () => {
               setIsDropdown(false)
             }} 
           />
-          <div className="absolute top-14 z-10 w-full max-w-[11rem] shadow-sm rounded-md bg-pure-white border border-black-matt border-opacity-10">
+          <div className="absolute top-14 z-10 w-full max-w-[11rem] shadow-sm bg-pure-white border border-black-matt border-opacity-10">
             <div className="flex flex-col w-full">
               <Link href="/">
                 <a className="flex flex-row items-center w-full px-3 py-2 space-x-2 hover:bg-light-gray hover:bg-opacity-5">
