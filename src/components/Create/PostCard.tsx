@@ -31,11 +31,11 @@ const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onPublish)} className="flex flex-col md:flex-row w-full max-w-full px-3 py-5 md:p-3 space-x-0 space-y-2 md:space-x-2 md:space-y-0 bg-pure-white border border-black-matt border-opacity-10">
+    <form onSubmit={handleSubmit(onPublish)} className="flex flex-col md:flex-row w-full max-w-full px-3 py-5 md:p-5 space-x-0 space-y-2 md:space-x-2 md:space-y-0 bg-pure-white border border-black-matt border-opacity-10">
       {/* display create post form controls list */}
-      <div className="flex flex-col w-full h-full space-y-2">
+      <div className="flex flex-col w-full h-full space-y-5">
         <div className="flex items-center justify-between w-full">
-          <h3 className="font-semibold text-base">Create Post</h3>
+          <h3 className="font-semibold text-lg">Create Post</h3>
         </div>
         <div className="flex flex-col w-full space-y-2">
           <div className="flex flex-col items-center w-full space-y-2">
@@ -73,9 +73,9 @@ const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
         </div>
       </div>
       {/* display add ingredients list */}
-      <div className="flex flex-col w-full h-full space-y-2">
+      <div className="flex flex-col w-full h-full space-y-5">
         <div className="flex items-center justify-between w-full px-2">
-          <h3 className="font-semibold text-base">List of Ingredients</h3>
+          <h3 className="font-semibold text-lg">List of Ingredients</h3>
           <button
             className="flex items-center space-x-1 text-light-gray outline-none pl-3 transition ease-in-out duration-200 hover:underline"
             type="button"
@@ -114,7 +114,10 @@ const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
          )}
          {fields.length !== 0 && (
            <div className="flex w-full">
-            <PublishButton setIsOpen={setIsOpen} />
+            <PublishButton
+              append={append}
+              setIsOpen={setIsOpen}
+            />
           </div>
          )}
         </div>
