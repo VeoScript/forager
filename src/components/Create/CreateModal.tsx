@@ -53,7 +53,7 @@ const CreateModal: React.FC = () => {
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
-              className="inline-block h-screen align-middle"
+              className="inline-block h-screen align-top"
               aria-hidden="true"
             >
               &#8203;
@@ -67,8 +67,10 @@ const CreateModal: React.FC = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-5xl overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
-                <PostCard setIsOpen={setIsOpen} />
+              <div className="inline-block w-full max-w-5xl py-10 overflow-hidden text-left align-middle transition-all transform">
+                <div className="flex w-full bg-white shadow-xl">
+                  <PostCard setIsOpen={setIsOpen} />
+                </div>
               </div>
             </Transition.Child>
           </div>

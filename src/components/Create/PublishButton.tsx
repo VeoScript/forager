@@ -1,10 +1,11 @@
 import React from 'react'
 
 interface TypeProps {
+  append: any
   setIsOpen: any
 }
 
-const PublishButton: React.FC<TypeProps> = ({ setIsOpen }) => {
+const PublishButton: React.FC<TypeProps> = ({ append, setIsOpen }) => {
   return (
     <div className="flex flex-row items-center w-full space-x-1">
       <button
@@ -17,7 +18,14 @@ const PublishButton: React.FC<TypeProps> = ({ setIsOpen }) => {
         Cancel
       </button>
       <button
-        className="flex justify-center w-full p-4 text-sm text-white border border-black-matt border-opacity-10 bg-dark-gray hover:bg-opacity-80 transition ease-in-out duration-200 outline-none"
+        className="flex justify-center w-full p-4 text-sm border border-black-matt border-opacity-10 hover:border-light-gray transition ease-in-out duration-200 outline-none"
+        type="button"
+        onClick={() => append({ value: "" })}
+      >
+        Add
+      </button>
+      <button
+        className="flex justify-center w-full p-4 text-sm text-pure-white border border-[#00719C] border-opacity-10 bg-[#00719C] hover:bg-opacity-80 transition ease-in-out duration-200 outline-none"
         type="submit"
       >
         Publish
