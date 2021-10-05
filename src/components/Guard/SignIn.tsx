@@ -23,7 +23,7 @@ const SignInComponent: React.FC = () => {
       <motion.div
         initial={{ scale: 1 }}
         animate={{ scale: 0 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 1.5 }}
         className="absolute inset-0 flex flex-col items-center justify-center h-full"
       >
         <div className="flex flex-col items-center w-full h-auto">
@@ -35,7 +35,7 @@ const SignInComponent: React.FC = () => {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 1.5 }}
         className="flex flex-col items-center w-full space-y-5"
       >
         <div className="flex flex-col items-center w-full h-auto">
@@ -74,10 +74,10 @@ const SignInComponent: React.FC = () => {
           </button>
           <div className="flex items-center justify-between w-full">
             <Link href="/signup">
-              <a className="py-2 font-normal text-xs text-black-matt hover:underline">Create Account</a>  
+              <a className="font-normal text-xs text-black-matt hover:underline">Create Account</a>  
             </Link>
             <Link href="/forgot-password">
-              <a className="py-2 font-normal text-xs text-black-matt hover:underline">Forgot Password?</a>  
+              <a className="font-normal text-xs text-black-matt hover:underline">Forgot Password?</a>  
             </Link>
           </div>
         </form>
