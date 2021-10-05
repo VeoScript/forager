@@ -2,21 +2,21 @@ import type { NextPage } from 'next'
 import React from 'react'
 import Head from 'next/head'
 import Guard from '~/layouts/guard'
-import SignInComponent from '~/components/Guard/SignIn'
+import SignUpComponent from '~/components/Guard/SignUp'
 
-const SignIn: NextPage = () => {
+const SignUp: NextPage = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Sign In | Forager</title>
+        <title>Create Account | Forager</title>
       </Head>
       <Guard>
-        <div className="flex flex-col items-center w-full max-w-md h-full">
-          <SignInComponent />
+        <div className="flex flex-col items-center w-full max-w-xl">
+          <SignUpComponent />
         </div>
       </Guard>
     </React.Fragment>
   )
 }
 
-export default SignIn
+export default SignUp
