@@ -108,12 +108,12 @@ const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
           </div>
          ))}
          {fields.length === 0 && (
-           <div className="flex justify-center w-full py-3">
+          <div className="flex justify-center w-full py-3">
             <h1 className="font-normal text-sm text-light-gray">No ingredients at all.</h1>
           </div>
          )}
          {fields.length !== 0 && (
-           <div className="flex w-full">
+          <div className="flex w-full">
             <PublishButton
               append={append}
               setIsOpen={setIsOpen}
