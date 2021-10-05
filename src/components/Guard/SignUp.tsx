@@ -81,6 +81,7 @@ const SignUpComponent: React.FC = () => {
           <div className="flex flex-col w-full px-3 py-2 space-y-1 bg-pure-white border border-black-matt border-opacity-10 focus-within:border-dark-gray">
             <div className="flex items-center justify-between w-full">
               <span className="text-xs text-light-gray text-opacity-80">Email</span>
+              {errors.email && <span className="text-[11px] text-red-500">Invalid Email</span>}
             </div>
             <input
               className="w-full font-normal text-base outline-none bg-transparent"
@@ -113,8 +114,8 @@ const SignUpComponent: React.FC = () => {
           <div className="flex w-full px-5 text-xs">
             {errors.password && 
               <ul className="text-green-500 list-disc">
-                <li>At least 1 Alphabet</li>
-                <li>At least 1 Digit</li>
+                <li>At least 1 alphabet</li>
+                <li>At least 1 digit</li>
                 <li>Contains no space</li>
                 <li>Optional special characters e.g. @$!%*#?&^_-</li>
                 <li>Minimum 8 characters long</li>

@@ -28,6 +28,7 @@ export const newsfeed = [
     username: 'lalalalisa_m',
     food: 'Filipino Adobo',
     tag: 'Philippine Food',
+    date: '1 min ago',
     description: 'Sa mga tawo na gusto mag luto ug Adobo, dia ra ang mga possible na mga rekado. Pasalamat tawon mo oy nga naay naka hunahuna ing ani na social media.',
     ingredients: [
       {
@@ -46,15 +47,18 @@ export const newsfeed = [
     commentlist: [
       {
         name: 'Richlyn Hermosilla',
-        message: 'I love you my Lili. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam tenetur vero obcaecati expedita hic perferendis saepe sed, consectetur ex rem minima nulla porro nihil sequi! Accusamus ea voluptatibus maiores beatae?'
+        message: 'I love you my Lili. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam tenetur vero obcaecati expedita hic perferendis saepe sed, consectetur ex rem minima nulla porro nihil sequi! Accusamus ea voluptatibus maiores beatae?',
+        date: '5 mins ago'
       },
       {
         name: 'Jerome Villaruel',
-        message: 'Mahal ko kayong dalawa ni babsy.'
+        message: 'Mahal ko kayong dalawa ni babsy.',
+        date: '5 mins ago'
       },
       {
         name: 'Staind',
-        message: 'Cause I must be sleeping'
+        message: 'Cause I must be sleeping',
+        date: '5 mins ago'
       }
     ],
     reaction: '43',
@@ -67,6 +71,7 @@ export const newsfeed = [
     username: 'jennierubyjane',
     food: 'Kimchi',
     tag: 'Korean Food',
+    date: '5 mins ago',
     description: 'Gwapa ko, lami ko. Pero mas lami ning lutua suwayi na ninju!',
     ingredients: [
       {
@@ -85,11 +90,13 @@ export const newsfeed = [
     commentlist: [
       {
         name: 'Carl Whistle',
-        message: 'Bubulong, ako sayo mamayang madaling araw!'
+        message: 'Bubulong, ako sayo mamayang madaling araw!',
+        date: '5 mins ago'
       },
       {
         name: 'Sylvister Istalong',
-        message: 'Eat talong to fulfil your happiness.'
+        message: 'Eat talong to fulfil your happiness.',
+        date: '5 mins ago'
       }
     ],
     reaction: '1k',
@@ -102,6 +109,7 @@ export const newsfeed = [
     username: 'roses_are_rosie',
     food: 'Pizza',
     tag: 'American Food',
+    date: '3 hrs ago',
     description: 'Sa mga baje na gipang regla nya nag crave ug pizza, hala sunduga ning akong ingredients sa pag bake ug pizza',
     ingredients: [
       {
@@ -123,15 +131,18 @@ export const newsfeed = [
     commentlist: [
       {
         name: 'Chelyn Lee',
-        message: 'Hi how are you?'
+        message: 'Hi how are you?',
+        date: '5 mins ago'
       },
       {
         name: 'Akisha Faye',
-        message: 'You look so funny tonight.'
+        message: 'You look so funny tonight.',
+        date: '5 mins ago'
       },
       {
         name: 'Loraine Bacacon',
-        message: 'Let me tell you a lie.'
+        message: 'Let me tell you a lie.',
+        date: '5 mins ago'
       }
     ],
     reaction: '100k',
@@ -144,6 +155,7 @@ export const newsfeed = [
     username: 'sooya',
     food: 'Sinigang Na Cyanide',
     tag: 'Toxic People Food',
+    date: '9 hrs ago',
     description: 'Para sa mga tawo na toxic, dia ra injung requested ingredients.',
     ingredients: [
       {
@@ -159,11 +171,13 @@ export const newsfeed = [
     commentlist: [
       {
         name: 'Carl Torres',
-        message: 'Gwapa ka.'
+        message: 'Gwapa ka.',
+        date: '5 mins ago'
       },
       {
         name: 'Keziah Reign',
-        message: 'Take care always wherever you go.'
+        message: 'Take care always wherever you go.',
+        date: '5 mins ago'
       }
     ],
     reaction: '1M',

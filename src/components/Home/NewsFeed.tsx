@@ -36,8 +36,9 @@ const NewsFeed: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full px-3 border-b border-black-matt border-opacity-10">
-            <span className="font-normal text-sm pt-2 pb-5">{ feed.description }</span>
+          <div className="flex flex-col w-full pt-2 pb-5 px-3 space-y-5 border-b border-black-matt border-opacity-10">
+            <span className="font-normal text-sm">{ feed.description }</span>
+            <span className="font-normal text-[10px]">{ feed.date }</span>
           </div>
           <div className="flex flex-col w-full mt-2 space-y-2">
             <div className="flex flex-row items-center justify-between w-full px-3">
@@ -84,6 +85,7 @@ const NewsFeed: React.FC = () => {
                       <a className="font-bold text-xs hover:underline">{ comment.name }</a>
                     </Link>
                     <p className="font-normal text-[11px]">{ comment.message }</p>
+                    <span className="font-normal text-[10px]">{ comment.date }</span>
                   </div>
                 ))}
               </div>
