@@ -62,22 +62,20 @@ const SignIn: NextPage = () => {
                     type="password"
                   />
                 </div>
-                <div className="flex justify-center w-full">
-                  <Link href="/signup">
-                    <a className="py-2 font-normal text-xs text-black-matt hover:underline">Forgot Password?</a>  
-                  </Link>
-                </div>
                 <button
                   className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none"
                   type="submit"
                 >
                   Sign In
                 </button>
-                <Link href="/signup">
-                  <a className="md:hidden flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none" type="submit">
-                    Create Account
-                  </a>
-                </Link>
+                <div className="flex items-center justify-between md:justify-center w-full">
+                  <Link href="/signup">
+                    <a className="py-2 font-normal text-xs text-black-matt hover:underline">Forgot Password?</a>  
+                  </Link>
+                  <Link href="/signup">
+                    <a className="md:hidden py-2 font-normal text-xs text-black-matt hover:underline">Create Account</a>  
+                  </Link>
+                </div>
               </form>
             </motion.div>
           </div>
