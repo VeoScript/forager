@@ -25,7 +25,7 @@ const PublishButton: React.FC<TypeProps> = ({ append, setIsOpen }) => {
         Add
       </button>
       <button
-        className="flex justify-center w-full p-4 text-sm text-pure-white border border-[#00719C] border-opacity-10 bg-[#00719C] hover:bg-opacity-80 transition ease-in-out duration-200 outline-none"
+        className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none"
         type="submit"
       >
         Publish

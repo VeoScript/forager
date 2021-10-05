@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Credits: React.FC = () => {
   return (
-    <div className="flex flex-col w-full max w-sm space-y-0.5 text-light-gray text-opacity-50">
+    <div className="flex flex-col w-full max-w-sm space-y-0.5 text-light-gray text-opacity-50">
       <div className="flex items-center w-full space-x-1">
         <div className="flex">
           <Link href="/">
