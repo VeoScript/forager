@@ -1,7 +1,7 @@
 import React from 'react'
 import PostCard from './PostCard'
 import { Dialog, Transition } from '@headlessui/react'
-import { RiAddBoxLine, RiCloseLine } from 'react-icons/ri'
+import { RiAddBoxLine } from 'react-icons/ri'
 
 const CreateModal: React.FC = () => {
   let [isOpen, setIsOpen] = React.useState(false)
