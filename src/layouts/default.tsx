@@ -4,10 +4,11 @@ import Menu from '~/components/MenuBars/Menu'
 import BottomBar from '~/components/MenuBars/BottomBar'
 
 interface TypeProps {
+  host: any
   children: any
 }
 
-const Layout: React.FC<TypeProps> = ({ children }) => {
+const Layout: React.FC<TypeProps> = ({ host, children }) => {
   
   const [isMenuOpen, setMenuOpen] = React.useState(false)
   
@@ -16,6 +17,7 @@ const Layout: React.FC<TypeProps> = ({ children }) => {
       <div className="flex flex-col items-center w-full h-full">
         <div className="relative flex w-full">
           <NavBar
+            host={host}
             setMenuOpen={setMenuOpen}
           />
           <Menu

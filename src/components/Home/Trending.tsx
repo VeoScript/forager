@@ -5,7 +5,11 @@ import Credits from './Credits'
 import CreateModal from '../Create/CreateModal'
 import { trending } from '~/mock'
 
-const Trending: React.FC = () => {
+interface TypeProps {
+  host: any
+}
+
+const Trending: React.FC<TypeProps> = ({ host }) => {
   return (
     <div className="relative hidden md:flex flex-col w-full max-w-sm h-full py-6 space-y-3">
       <div className="fixed flex-flex-col w-full max-w-sm space-y-5">
@@ -15,7 +19,7 @@ const Trending: React.FC = () => {
               <a>
                 <img
                   className="w-16 h-16 object-cover rounded-full bg-dark-gray bg-opacity-20"
-                  src={`https://ui-avatars.com/api/?name=${'Lisa Manoban'}`}
+                  src={!host.avatar ? `https://ui-avatars.com/api/?name=${host.name}` : host.avatar}
                   alt="profile"
                 />
               </a>

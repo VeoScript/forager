@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import { RiArrowRightSLine } from 'react-icons/ri'
 
 interface TypeProps {
@@ -40,9 +41,14 @@ const MenuLinks: React.FC<TypeProps> = ({ setMenuOpen }) => {
         <button
           className="flex flex-row items-center justify-between w-full px-5 py-3 border-b border-black-matt border-opacity-10 hover:border-transparent hover:bg-red-500 hover:bg-opacity-10"
           type="button"
-          onClick={() => {
-            console.log('Logged Out Button')
-            setMenuOpen(false)
+          onClick={async () => {
+            await fetch('/api/auth/signout', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            Router.push('/signin')
           }}
         >
           <span className="text-[13px] text-red-500">Log Out</span>

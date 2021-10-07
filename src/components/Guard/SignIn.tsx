@@ -1,25 +1,90 @@
 import React from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import Spinner from '~/utils/Spinner'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
+import toast, { Toaster } from 'react-hot-toast'
+import bcrypt from 'bcryptjs'
+import useSWR from 'swr'
 
 interface FormData {
   email: string
   password: string
 }
 
+const fetcher = async (
+  input: RequestInfo,
+  init: RequestInit,
+  ...args: any[]
+) => {
+  const res = await fetch(input, init)
+  return res.json()
+}
+
 const SignInComponent: React.FC = () => {
+
+  const { data: users } = useSWR('/api/auth/users', fetcher, {
+    refreshInterval: 1000
+  })
 
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm()
 
   async function onSignIn(formData: FormData) {
-    console.log(formData)
+    const email = formData.email
+    const password = formData.password
+
+    const credentials = users.find((user: { email: string }) => user.email === email)
+
+    if (!credentials) {
+      toast('Account not found, sign up first.',
+        {
+          icon: '🛡️',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    const hashPassword = credentials.password
+    const matchPassword = await bcrypt.compare(password, hashPassword)
+
+    if (!matchPassword) {
+      toast('Password is incorrect!',
+        {
+          icon: '❌',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+    
+    await fetch('/api/auth/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    })
+
     reset()
+    Router.push('/')
   }
 
   return (
     <div className="relative flex flex-col items-center w-full h-auto">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <motion.div
         initial={{ scale: 1 }}
         animate={{ scale: 0 }}
@@ -66,12 +131,19 @@ const SignInComponent: React.FC = () => {
               {...register("password", { required: true })}
             />
           </div>
-          <button
-            className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none"
-            type="submit"
-          >
-            Sign In
-          </button>
+          {!isSubmitting && (
+            <button
+              className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none"
+              type="submit"
+            >
+              Sign In
+            </button>
+          )}
+          {isSubmitting && (
+            <div className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none">
+              Loading...
+            </div>
+          )}
           <div className="flex items-center justify-between w-full">
             <Link href="/signup">
               <a className="font-normal text-xs text-black-matt hover:underline">Create Account</a>  

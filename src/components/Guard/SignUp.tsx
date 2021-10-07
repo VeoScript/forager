@@ -1,25 +1,123 @@
 import React from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import Spinner from '~/utils/Spinner'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
+import toast, { Toaster } from 'react-hot-toast'
+import useSWR from 'swr'
 
 interface FormData {
+  name: string
+  username: string
+  phone: string
   email: string
   password: string
+  repassword: string
+}
+
+const fetcher = async (
+  input: RequestInfo,
+  init: RequestInit,
+  ...args: any[]
+) => {
+  const res = await fetch(input, init)
+  return res.json()
 }
 
 const SignUpComponent: React.FC = () => {
 
+  const { data: users } = useSWR('/api/auth/users', fetcher, {
+    refreshInterval: 1000
+  })
+
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm()
 
   async function onSignUp(formData: FormData) {
-    console.log(formData)
+    const username = formData.username
+    const phone = formData.phone
+    const email = formData.email
+    const password = formData.password
+    const repassword = formData.repassword
+
+    const phone_credential = users.some((user: { phone: string }) => user.phone === phone)
+    const username_credential = users.some((user: { username: string }) => user.username === username)
+    const email_credential = users.some((user: { email: string }) => user.email === email)
+
+    if (username_credential) {
+      toast('Username is already exist.',
+        {
+          icon: '🛡️',
+          style: {
+            borderRadius: '10px',
+            background: '#222',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    if (phone_credential) {
+      toast('The phone number is already exist.',
+        {
+          icon: '🛡️',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    if (email_credential) {
+      toast('Email is already exist.',
+        {
+          icon: '🛡️',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    if (password !== repassword) {
+      toast('Password not matched, try again.',
+        {
+          icon: '🛡️',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+
     reset()
+    Router.replace('/signin')
   }
 
   return (
     <div className="relative flex flex-col items-center w-full h-auto">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <motion.div
         initial={{ scale: 1 }}
         animate={{ scale: 0 }}
@@ -122,12 +220,19 @@ const SignUpComponent: React.FC = () => {
               </ul>
             }
           </div>
-          <button
-            className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none"
-            type="submit"
-          >
-            Sign Up
-          </button>
+          {!isSubmitting && (
+            <button
+              className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          )}
+          {isSubmitting && (
+            <div className="flex justify-center w-full p-4 text-sm text-pure-white border border-black-matt border-opacity-10 bg-black-matt hover:bg-opacity-90 transition ease-in-out duration-200 outline-none">
+              Loading...
+            </div>
+          )}
           <div className="flex items-center justify-center w-full">
             <Link href="/signin">
               <a className="py-1 font-normal text-xs text-black-matt hover:underline">Go back to Sign in</a>  
