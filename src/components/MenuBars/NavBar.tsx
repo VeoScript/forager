@@ -99,7 +99,7 @@ const NavBar: React.FC<TypeProps> = ({ setMenuOpen }) => {
             <a>
               <img
                 className="w-6 h-6 object-cover rounded-full bg-dark-gray bg-opacity-30 transition ease-in-out duration-200 hover:scale-95"
-                src="https://avatars.githubusercontent.com/u/26340308?v=4"
+                src={`https://ui-avatars.com/api/?name=${'Lisa Manoban'}`}
                 alt="profile" />
             </a>
           </Link>
