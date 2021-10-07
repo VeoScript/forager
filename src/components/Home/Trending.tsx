@@ -15,7 +15,7 @@ const Trending: React.FC = () => {
               <a>
                 <img
                   className="w-16 h-16 object-cover rounded-full bg-dark-gray bg-opacity-20"
-                  src="https://avatars.githubusercontent.com/u/26340308?v=4"
+                  src={`https://ui-avatars.com/api/?name=${'Lisa Manoban'}`}
                   alt="profile"
                 />
               </a>

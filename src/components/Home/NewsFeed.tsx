@@ -15,7 +15,7 @@ const NewsFeed: React.FC = () => {
                 <a>
                   <img
                     className="w-10 h-10 object-cover rounded-full bg-dark-gray bg-opacity-20"
-                    src={ feed.avatar }
+                    src={ !feed.avatar ? `https://ui-avatars.com/api/?name=${'Lisa Manoban'}` : feed.avatar }
                     alt="profile"
                   />
                 </a>
