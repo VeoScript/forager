@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import { motion } from 'framer-motion'
 import React from 'react'
 import Head from 'next/head'
 import Guard from '~/layouts/guard'
 import SignUpComponent from '~/components/Guard/SignUp'
+import withSession from '~/lib/Session'
 
 const SignUp: NextPage = () => {
   return (
@@ -24,5 +26,22 @@ const SignUp: NextPage = () => {
     </React.Fragment>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = withSession(async function (context: any) {
+  const user = context.req.session.get('user')
+
+  if (user) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+})
 
 export default SignUp
