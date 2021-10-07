@@ -1,9 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import { RiUser3Line, RiSettings3Line } from 'react-icons/ri'
 
-const ProfileDropdown: React.FC = () => {
+interface TypeProps {
+  host: any
+}
+
+const ProfileDropdown: React.FC<TypeProps> = ({ host }) => {
   
   const [isDropdown, setIsDropdown] = React.useState(false)
 
@@ -17,7 +22,7 @@ const ProfileDropdown: React.FC = () => {
       >
         <img
           className="w-6 h-6 object-cover rounded-full bg-dark-gray bg-opacity-20 transition ease-in-out duration-200 hover:scale-95"
-          src={`https://ui-avatars.com/api/?name=${'Lisa Manoban'}`}
+          src={!host.avatar ? `https://ui-avatars.com/api/?name=${host.name}` : host.avatar}
           alt="profile" />
       </button>
       {isDropdown && (
@@ -43,11 +48,21 @@ const ProfileDropdown: React.FC = () => {
                   <span className="text-xs">Settings</span>
                 </a>
               </Link>
-              <Link href="/">
-                <a className="flex flex-row items-center w-full px-3 py-2 space-x-2 border-t border-black-matt border-opacity-10 text-red-500 hover:bg-red-500 hover:bg-opacity-10">
-                  <span className="text-xs">Log Out</span>
-                </a>
-              </Link>
+              <button
+                className="flex flex-row items-center w-full px-3 py-2 space-x-2 border-t border-black-matt border-opacity-10 text-red-500 hover:bg-red-500 hover:bg-opacity-10"
+                type="button"
+                onClick={async () => {
+                  await fetch('/api/auth/signout', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  })
+                  Router.push('/signin')
+                }}
+              >
+                <span className="text-xs">Log Out</span>
+              </button>
             </div>
           </div>
         </React.Fragment>
