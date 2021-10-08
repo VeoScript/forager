@@ -27,10 +27,10 @@ const Trending: React.FC<TypeProps> = ({ host }) => {
             <div className="flex flex-col space-y-0.5">
               <div className="flex flex-col -space-y-1">
                 <Link href="/">
-                  <a className="font-semibold text-base">Lisa Manoban</a>
+                  <a className="font-semibold text-base">{host.name}</a>
                 </Link>
                 <Link href="/">
-                  <a className="font-light text-xs hover:underline">lalalalisa_m</a>
+                  <a className="font-light text-xs hover:underline">@{host.username}</a>
                 </Link>
               </div>
               <p className="font-semibold text-xs">
