@@ -12,7 +12,11 @@ import {
   RiHeartFill
 } from 'react-icons/ri'
 
-const BottomBar: React.FC = () => {
+interface TypeProps {
+  host: any
+}
+
+const BottomBar: React.FC<TypeProps> = ({ host }) => {
 
   const router = useRouter()
 
@@ -33,7 +37,7 @@ const BottomBar: React.FC = () => {
           <RiSearchLine className="w-7 h-7" />
         </a>
       </Link>
-      <CreateModal />
+      <CreateModal host={host} />
       <Link href="/activities">
         <a className="font-light">
           {router.pathname === '/activities' && (
