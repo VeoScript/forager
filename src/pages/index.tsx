@@ -10,9 +10,10 @@ import Trending from '~/components/Home/Trending'
 
 interface TypeProps {
   host: any
+  dishes: any
 }
 
-const Home: NextPage<TypeProps> = ({ host }) => {
+const Home: NextPage<TypeProps> = ({ host, dishes }) => {
   return (
     <React.Fragment>
       <Head>
@@ -20,7 +21,7 @@ const Home: NextPage<TypeProps> = ({ host }) => {
       </Head>
       <Layout host={host}>
         <div className="flex flex-row items-center w-full h-full space-x-5">
-          <NewsFeed />
+          <NewsFeed dishes={dishes} />
           <Trending host={host} />
         </div>
       </Layout>
@@ -46,9 +47,33 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const dishes = await prisma.dishes.findMany({
+    orderBy: [
+      {
+        date: 'desc'
+      }
+    ],
+    select: {
+      id: true,
+      title: true,
+      category: true,
+      description: true,
+      date: true,
+      ingredients: true,
+      user: {
+        select: {
+          avatar: true,
+          name: true,
+          username: true
+        }
+      }
+    }
+  })
+
   return {
     props: {
-      host
+      host,
+      dishes
     }
   }
 })
