@@ -27,6 +27,7 @@ model Dishes {
   title                 String                @unique
   category              String
   description           String
+  date                  String
   ingredients           Ingredients[]
   user                  Users                                   @relation(fields: [userId], references: [id])
   userId                String
