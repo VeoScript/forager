@@ -1,7 +1,7 @@
 import React from 'react'
 import PublishButton from './PublishButton'
 import { useForm, useFieldArray } from 'react-hook-form'
-import { RiAddLine, RiDeleteBin4Line } from 'react-icons/ri'
+import { RiAddLine, RiDeleteBin4Line, RiCloseFill } from 'react-icons/ri'
 
 interface TypeProps {
   host: any
@@ -17,7 +17,7 @@ interface FormData {
 
 const PostCard: React.FC<TypeProps> = ({ host, setIsOpen }) => {
 
-  const { register, control, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm()
+  const { register, control, handleSubmit, reset, formState: { isSubmitting } } = useForm()
 
   const {fields, append, remove} = useFieldArray<any>({
     control,
@@ -31,8 +31,6 @@ const PostCard: React.FC<TypeProps> = ({ host, setIsOpen }) => {
     const description = formData.description
     const selected_ingredient = formData.selected_ingredient
     const all_ingredients = selected_ingredient.map((e: { value: any }) => e.value).join(", ")
-
-    // const splited_ingredient = all_ingredients.split(", ")
 
     await fetch('/api/dishes/create', {
       method: 'POST',
@@ -92,6 +90,30 @@ const PostCard: React.FC<TypeProps> = ({ host, setIsOpen }) => {
               {...register("description", { required: true })}
             />
           </div>
+          <button
+            className="fixed top-12 right-3 md:hidden transform hover:scale-95 transition ease-in-out duration-200 outline-none"
+            type="button"
+            onClick={() => {
+              setIsOpen(false)
+            }}
+          >
+            <RiCloseFill className="w-5 h-5 text-light-gray" />
+          </button>
+          <button
+            className="hidden md:flex justify-center w-full p-4 text-sm border border-black-matt border-opacity-10 hover:border-light-gray transition ease-in-out duration-200 outline-none"
+            type="button"
+            onClick={() => {
+              setIsOpen(false)
+            }}
+          >
+            Cancel
+          </button>
+          <div className="flex w-full">
+            <h3 className="font-light text-xs text-light-gray">
+              <span className="font-bold">Note: </span>
+              <span>{`Don't hit enter if your're not already done inputting your ingredients, because it will published automatically.`}</span>
+            </h3>
+          </div>
         </div>
       </div>
       {/* display add ingredients list */}
@@ -138,6 +160,7 @@ const PostCard: React.FC<TypeProps> = ({ host, setIsOpen }) => {
           <div className="flex w-full">
             <PublishButton
               append={append}
+              isSubmitting={isSubmitting}
               setIsOpen={setIsOpen}
             />
           </div>
