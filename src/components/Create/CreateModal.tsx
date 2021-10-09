@@ -1,9 +1,13 @@
 import React from 'react'
-import PostCard from './PostCard'
+import CreateForm from './CreateForm'
 import { Dialog, Transition } from '@headlessui/react'
 import { RiAddBoxLine } from 'react-icons/ri'
 
-const CreateModal: React.FC = () => {
+interface TypeProps {
+  host: any
+}
+
+const CreateModal: React.FC<TypeProps> = ({ host }) => {
   let [isOpen, setIsOpen] = React.useState(false)
 
   function closeModal() {
@@ -69,7 +73,7 @@ const CreateModal: React.FC = () => {
             >
               <div className="inline-block w-full max-w-5xl py-10 overflow-hidden text-left align-middle transition-all transform">
                 <div className="flex w-full bg-white shadow-xl">
-                  <PostCard setIsOpen={setIsOpen} />
+                  <CreateForm host={host} setIsOpen={setIsOpen} />
                 </div>
               </div>
             </Transition.Child>

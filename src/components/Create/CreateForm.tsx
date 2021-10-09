@@ -4,17 +4,18 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import { RiAddLine, RiDeleteBin4Line } from 'react-icons/ri'
 
 interface TypeProps {
+  host: any
   setIsOpen: any
 }
 
 interface FormData {
-  title: string
-  category: string
-  description: string
-  selected_ingredient: string
+  title: String
+  category: String
+  description: String
+  selected_ingredient: any
 }
 
-const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
+const CreateForm: React.FC<TypeProps> = ({ host, setIsOpen }) => {
 
   const { register, control, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm()
 
@@ -24,7 +25,28 @@ const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
   })
 
   async function onPublish(formData: FormData) {
-    console.log(formData)
+    const userId = host.id
+    const title = formData.title
+    const category = formData.category
+    const description = formData.description
+    const selected_ingredient = formData.selected_ingredient
+    const all_ingredients = selected_ingredient.map((e: { value: any }) => e.value).join(", ")
+
+    // const splited_ingredient = all_ingredients.split(", ")
+
+    await fetch('/api/dishes/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId,
+        title,
+        category,
+        description,
+        all_ingredients,
+      })
+    })
     remove()
     reset()
     setIsOpen(false)
@@ -126,4 +148,4 @@ const PostCard: React.FC<TypeProps> = ({ setIsOpen }) => {
   )
 }
 
-export default PostCard
+export default CreateForm
