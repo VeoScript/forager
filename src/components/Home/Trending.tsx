@@ -39,7 +39,7 @@ const Trending: React.FC<TypeProps> = ({ host }) => {
             </div>
           </div>
           <div className="flex">
-            <CreateModal />
+            <CreateModal host={host} />
           </div>
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-3">
