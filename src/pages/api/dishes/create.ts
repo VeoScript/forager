@@ -8,6 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       category: req.body.category,
       description: req.body.description,
       userId: req.body.userId,
+      date: String(new Date()),
       ingredients: {
         create: {
           ingredient: req.body.all_ingredients

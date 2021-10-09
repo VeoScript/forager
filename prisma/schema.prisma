@@ -24,9 +24,10 @@ model Users {
 
 model Dishes {
   id                    String                @id               @default(uuid())
-  title                 String                @unique
+  title                 String
   category              String
   description           String
+  date                  String
   ingredients           Ingredients[]
   user                  Users                                   @relation(fields: [userId], references: [id])
   userId                String
@@ -35,6 +36,6 @@ model Dishes {
 model Ingredients {
   id                    String                @id               @default(uuid())
   ingredient            String
-  dish                  Dishes                                  @relation(fields: [dishTitle], references: [title])
-  dishTitle             String
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id])
+  dishId                String
 }
