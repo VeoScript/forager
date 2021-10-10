@@ -38,7 +38,7 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
         const split_ingredients = dish.ingredients[0].ingredient.split(", ")
         return (
           <div className="flex flex-col w-full max-w-full h-auto border border-black-matt border-opacity-10 bg-pure-white transition ease-in-out duration-200 hover:shadow-md" key={i}>
-            <div className="flex flex-row items-center p-3 justify-between w-full">
+            <div className="flex flex-col md:flex-row items-start md:items-center p-3 justify-between w-full">
               <div className="flex flex-row items-center justify-start space-x-2">
                 <Link href="/">
                   <a>
@@ -58,14 +58,14 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
                   </Link>
                 </div>
               </div>
-              <div className="flex flex-row items-center justify-end">
-                <div className="flex flex-col items-end w-full">
+              <div className="flex flex-row items-center justify-end mt-5 md:mt-0">
+                <div className="flex flex-col items-start md:items-end w-full">
                   <h3 className="font-semibold text-sm">{ dish.title }</h3>
                   <h6 className="font-light text-xs">{ dish.category }</h6>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-full pt-2 pb-5 px-3 space-y-5 border-b border-black-matt border-opacity-10">
+            <div className="flex flex-col w-full py-5 px-3 space-y-5 border-t border-b border-black-matt border-opacity-10">
               <span className="font-normal text-sm">{ dish.description }</span>
               <span className="font-normal text-[10px]"><Moment date={ dish.date } fromNow /></span>
             </div>
@@ -85,17 +85,17 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
                     <button
                       type="button"
                     >
-                      <RiBookmarkLine />
+                      <RiChat1Line />
                     </button>
-                    <span className="text-[10px] text-light-gray">{ dish.bookmarked }</span>
+                    <span className="text-[10px] text-light-gray">{ dish.comments }</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <button
                       type="button"
                     >
-                      <RiChat1Line />
+                      <RiBookmarkLine />
                     </button>
-                    <span className="text-[10px] text-light-gray">{ dish.comments }</span>
+                    <span className="text-[10px] text-light-gray">{ dish.bookmarked }</span>
                   </div>
                 </div>
               </div>

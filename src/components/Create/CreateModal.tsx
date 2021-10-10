@@ -42,7 +42,7 @@ const CreateModal: React.FC<TypeProps> = ({ host }) => {
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="min-h-screen px-4 text-center bg-black-matt bg-opacity-30">
+          <div className="min-h-screen px-4 py-10 text-center bg-black-matt bg-opacity-30">
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-300"
@@ -57,7 +57,7 @@ const CreateModal: React.FC<TypeProps> = ({ host }) => {
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
-              className="inline-block h-screen align-top"
+              className="inline-block h-full align-top"
               aria-hidden="true"
             >
               &#8203;
@@ -71,7 +71,7 @@ const CreateModal: React.FC<TypeProps> = ({ host }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-5xl py-10 overflow-hidden text-left align-middle transition-all transform">
+              <div className="inline-block w-full max-w-5xl text-left align-middle transition-all transform">
                 <div className="flex w-full bg-white shadow-xl">
                   <CreateForm host={host} setIsOpen={setIsOpen} />
                 </div>
