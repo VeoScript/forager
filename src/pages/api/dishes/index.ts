@@ -15,8 +15,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       description: true,
       date: true,
       ingredients: true,
+      comments: {
+        orderBy: [
+          {
+            date: 'desc'
+          }
+        ],
+        take: 3,
+        select: {
+          id: true,
+          comment: true,
+          date: true,
+          user: {
+            select: {
+              name: true
+            }
+          }
+        }
+      },
       user: {
         select: {
+          id: true,
           avatar: true,
           name: true,
           username: true
