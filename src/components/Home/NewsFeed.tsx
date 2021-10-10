@@ -185,14 +185,14 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
         />
         {!isSubmitting && (
           <button
-            className="flex text-xl px-3 border-l border-black-matt border-opacity-10 transform hover:scale-95"
+            className="flex text-xl px-3 py-2 border-l border-black-matt border-opacity-10 transform hover:scale-95"
             type="submit"
           >
             <RiSendPlane2Line />
           </button>
         )}
         {isSubmitting && (
-          <div className="flex text-xl px-3 border-l border-black-matt border-opacity-10 transform hover:scale-95">
+          <div className="flex text-xl px-1.5 border-l border-black-matt border-opacity-10 transform hover:scale-95">
             <Spinner2 />
           </div>
         )}
