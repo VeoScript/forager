@@ -3,6 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import Moment from 'react-moment'
 import useSWR from 'swr'
+import Spinner2 from '~/utils/Spinner2'
+import { useForm } from 'react-hook-form'
 import {
   RiHeartLine,
   RiBookmarkLine,
@@ -11,7 +13,17 @@ import {
 } from 'react-icons/ri'
 
 interface TypeProps {
+  host: any
   dishes: any
+}
+
+interface FormData {
+  commentbox: String
+}
+
+interface CommentFormTypes {
+  host: any
+  dishId: any
 }
 
 const fetcher = async (
@@ -23,7 +35,7 @@ const fetcher = async (
   return res.json()
 }
 
-const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
+const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
 
   // use useSWR for realtime data fetching...
   const { data: fetchDishes } = useSWR('/api/dishes', fetcher, {
@@ -79,7 +91,7 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
                     >
                       <RiHeartLine />
                     </button>
-                    <span className="text-[10px] text-light-gray">{ dish.reaction }</span>
+                    <span className="text-[10px] text-light-gray">50</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <button
@@ -87,7 +99,7 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
                     >
                       <RiChat1Line />
                     </button>
-                    <span className="text-[10px] text-light-gray">{ dish.comments }</span>
+                    <span className="text-[10px] text-light-gray">40</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <button
@@ -95,49 +107,35 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
                     >
                       <RiBookmarkLine />
                     </button>
-                    <span className="text-[10px] text-light-gray">{ dish.bookmarked }</span>
+                    <span className="text-[10px] text-light-gray">20</span>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col w-full">
                 <div className="flex flex-col w-full font-bold text-sm">
-                  {split_ingredients.map((ingredient: any, i: any) => (
-                    <span className="p-3 w-full bg-dark-gray bg-opacity-10 border-b border-black-matt border-opacity-10" key={i}>
+                  {split_ingredients.map((ingredient: any, ingredientCounter: any) => (
+                    <span className="p-3 w-full bg-dark-gray bg-opacity-10 border-b border-black-matt border-opacity-10" key={ingredientCounter}>
                       { ingredient }
                     </span>
                   ))}
                 </div>
-                {/* <div className="flex flex-col w-full">
-                  {dish.commentlist.map((comment: any, i: any) => (
-                    <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={i}>
+                <div className="flex flex-col w-full">
+                  {dish.comments.map((comment: any, commentCounter: any) => (
+                    <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10 space-y-1" key={commentCounter}>
                       <Link href="/">
-                        <a className="font-bold text-xs hover:underline">{ comment.name }</a>
+                        <a className="font-bold text-xs hover:underline">{ comment.user.name }</a>
                       </Link>
-                      <p className="font-normal text-[11px]">{ comment.message }</p>
-                      <span className="font-normal text-[10px]">{ comment.date }</span>
+                      <p className="font-normal text-[11px]">{ comment.comment }</p>
+                      <span className="font-normal text-[10px] text-light-gray text-opacity-80">
+                        <Moment date={ comment.date } fromNow />
+                      </span>
                     </div>
                   ))}
-                </div> */}
-                <div className="flex flex-col items-center w-full">
-                  <div className="flex items-center w-full py-3 bg-pure-white border-b border-black-matt border-opacity-10">
-                    <input
-                      className="font-normal text-xs w-full px-5 outline-none bg-transparent"
-                      type="text"
-                      placeholder="Add a comment..."
-                    />
-                    <button
-                      className="flex text-xl px-3 border-l border-black-matt border-opacity-10"
-                      type="button"
-                    >
-                      <RiSendPlane2Line />
-                    </button>
-                  </div>
-                  <div className="flex justify-center w-full py-2">
-                    <Link href="/">
-                      <a className="font-normal text-xs hover:underline">See more comments...</a>
-                    </Link>
-                  </div>
                 </div>
+                <CommentForm
+                  host={host}
+                  dishId={dish.id}
+                />
               </div>
             </div>
           </div>
@@ -147,4 +145,65 @@ const Newsdish: React.FC<TypeProps> = ({ dishes }) => {
   )
 }
 
-export default Newsdish
+// CommentForm Component (for dynamic form-controls for each posts)...
+const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: {
+      isSubmitting
+    }
+  } = useForm()
+
+  async function onComment(formData: FormData) {
+    const userId = host.id
+    const commentbox = formData.commentbox
+    
+    await fetch('/api/comments/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        commentbox,
+        userId,
+        dishId
+      })
+    })
+    reset()
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onComment)} className="flex flex-col items-center w-full">
+      <div className="flex items-center w-full py-3 bg-pure-white border-b border-black-matt border-opacity-10">
+        <input
+          className="font-normal text-xs w-full px-5 outline-none bg-transparent"
+          type="text"
+          placeholder="Add a comment..."
+          {...register('commentbox', { required: true })}
+        />
+        {!isSubmitting && (
+          <button
+            className="flex text-xl px-3 border-l border-black-matt border-opacity-10 transform hover:scale-95"
+            type="submit"
+          >
+            <RiSendPlane2Line />
+          </button>
+        )}
+        {isSubmitting && (
+          <div className="flex text-xl px-3 border-l border-black-matt border-opacity-10 transform hover:scale-95">
+            <Spinner2 />
+          </div>
+        )}
+      </div>
+      <div className="flex justify-center w-full py-2">
+        <Link href="/">
+          <a className="font-normal text-xs hover:underline">See more comments...</a>
+        </Link>
+      </div>
+    </form>
+  )
+}
+
+export default NewsFeed
