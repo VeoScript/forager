@@ -21,7 +21,7 @@ const Home: NextPage<TypeProps> = ({ host, dishes }) => {
       </Head>
       <Layout host={host}>
         <div className="flex flex-row items-center w-full h-full space-x-5">
-          <NewsFeed dishes={dishes} />
+          <NewsFeed host={host} dishes={dishes} />
           <Trending host={host} />
         </div>
       </Layout>
@@ -60,8 +60,27 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
       description: true,
       date: true,
       ingredients: true,
+      comments: {
+        orderBy: [
+          {
+            date: 'desc'
+          }
+        ],
+        take: 3,
+        select: {
+          id: true,
+          comment: true,
+          date: true,
+          user: {
+            select: {
+              name: true
+            }
+          }
+        }
+      },
       user: {
         select: {
+          id: true,
           avatar: true,
           name: true,
           username: true
