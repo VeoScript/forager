@@ -60,6 +60,13 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
       description: true,
       date: true,
       ingredients: true,
+      likes: {
+        select: {
+          id: true,
+          dishId: true,
+          userId: true
+        }
+      },
       comments: {
         orderBy: [
           {

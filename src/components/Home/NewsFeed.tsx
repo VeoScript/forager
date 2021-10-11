@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import {
   RiHeartLine,
+  RiHeart2Fill,
   RiBookmarkLine,
   RiChat1Line,
   RiSendPlane2Line
@@ -21,6 +22,11 @@ interface TypeProps {
 
 interface FormData {
   commentbox: String
+}
+
+interface ReactionsType {
+  host: any
+  dish: any
 }
 
 interface CommentFormTypes {
@@ -99,12 +105,11 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                 <h3 className="font-semibold text-sm text-dark-gray text-opacity-80">Main Ingredients</h3>
                 <div className="flex flex-row items-center space-x-2">
                   <div className="flex items-center space-x-1">
-                    <button
-                      type="button"
-                    >
-                      <RiHeartLine />
-                    </button>
-                    <span className="text-[10px] text-light-gray">50</span>
+                    <ReactionButton
+                      host={host}
+                      dish={dish}
+                    />
+                    <span className="text-[10px] text-light-gray">{ dish.likes.length }</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <button
@@ -155,6 +160,56 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
         )
       })}
     </div>
+  )
+}
+
+// Reaction Button Component
+const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
+
+  const likes = dish.likes
+  const dishId = dish.id
+
+  // useState check if the post is liked
+  const [like, setLike] = React.useState(likes.some((liked: { userId: any }) => liked.userId === host.id))
+
+  // function for liking the post
+  async function onLike(dishId: any) {
+    const userId = host.id
+
+    await fetch('/api/likes/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId, dishId })
+    })
+  }
+
+  // function for unliking the post
+  async function onUnlike(dishId: any) {
+    const userId = host.id
+
+    await fetch('/api/likes/delete', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId, dishId })
+    })
+  }
+
+  return (
+    <button onClick={async () => {
+      like ? await onUnlike(dishId) : await onLike(dishId)
+      setLike(!like)
+    }}>
+      {like ? (
+          <RiHeart2Fill className="text-red-500" />
+        ) : (
+          <RiHeartLine />
+        )
+      }
+    </button>
   )
 }
 
