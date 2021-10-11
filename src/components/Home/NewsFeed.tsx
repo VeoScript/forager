@@ -117,7 +117,7 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                     >
                       <RiChat1Line />
                     </button>
-                    <span className="text-[10px] text-light-gray">40</span>
+                    <span className="text-[10px] text-light-gray">{ dish.comments.length }</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <button
