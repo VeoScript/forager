@@ -2,6 +2,7 @@ import React from 'react'
 import PublishButton from './PublishButton'
 import AutoScroll from '@brianmcallister/react-auto-scroll'
 import IngredientsIcon from '~/utils/Icons/Ingredients'
+import { motion } from 'framer-motion'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { RiAddLine, RiDeleteBin4Line, RiCloseFill } from 'react-icons/ri'
 
@@ -147,10 +148,15 @@ const PostCard: React.FC<TypeProps> = ({ host, setIsOpen }) => {
         >
           <div className="flex flex-col w-full h-full space-y-2">
             {fields.length === 0 && (
-              <div className="flex flex-col justify-center items-center w-full h-full py-5 md:py-20 space-y-2">
+              <motion.div
+                initial={{ y: -500 }}
+                animate={{ y: 0 }}
+                transition={{ ease: "easeOut", duration: 1 }}
+                className="flex flex-col justify-center items-center w-full h-full py-5 md:py-20 space-y-2"
+              >
                 <IngredientsIcon />
                 <h1 className="font-normal text-sm text-light-gray">No ingredient at all, add some ingredients...</h1>
-              </div>
+              </motion.div>
             )}
             {fields.map((item: any, index: any) => (
               <div className="flex flex-row items-center w-full px-3 py-2 space-y-1 bg-ghost-white border border-black-matt border-opacity-10 focus-within:border-dark-gray" key={item.id}>
