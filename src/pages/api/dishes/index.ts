@@ -15,6 +15,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       description: true,
       date: true,
       ingredients: true,
+      likes: {
+        select: {
+          id: true,
+          dishId: true,
+          userId: true
+        }
+      },
       comments: {
         orderBy: [
           {
