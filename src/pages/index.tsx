@@ -73,7 +73,6 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
             date: 'desc'
           }
         ],
-        take: 3,
         select: {
           id: true,
           comment: true,
