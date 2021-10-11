@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Moment from 'react-moment'
 import useSWR from 'swr'
 import Spinner2 from '~/utils/Spinner2'
+import IngredientsIcon from '~/utils/Icons/Ingredients'
+import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import {
   RiHeartLine,
@@ -45,6 +47,17 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
 
   return (
     <div className="flex flex-col w-full h-full mt-2 space-y-2 md:space-y-3">
+      {fetchDishes.length === 0 && (
+        <motion.div
+          initial={{ y: -500 }}
+          animate={{ y: 0 }}
+          transition={{ ease: "easeOut", duration: 1 }}
+          className="flex flex-col items-center justify-center w-full max-w-full mt-10 px-2 space-y-3"
+        >
+          <IngredientsIcon />
+          <h1 className="font-bold text-center text-xl text-black-matt text-opacity-50">NO DISHES AVAILABLE, CREATE YOUR FIRST POST.</h1>
+        </motion.div>
+      )}
       {fetchDishes.map((dish: any, i:any) => {
         // split all ingredients to array...
         const split_ingredients = dish.ingredients[0].ingredient.split(", ")
