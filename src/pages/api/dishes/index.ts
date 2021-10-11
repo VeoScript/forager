@@ -28,7 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             date: 'desc'
           }
         ],
-        take: 3,
         select: {
           id: true,
           comment: true,

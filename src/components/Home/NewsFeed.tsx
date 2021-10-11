@@ -67,6 +67,8 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
       {fetchDishes.map((dish: any, i:any) => {
         // split all ingredients to array...
         const split_ingredients = dish.ingredients[0].ingredient.split(", ")
+        // fetch only 3 comments in each posts...
+        const shortened_comments = dish.comments.slice(0, 3)
         return (
           <div className="flex flex-col w-full max-w-full h-auto border border-black-matt border-opacity-10 bg-pure-white transition ease-in-out duration-200 hover:shadow-md" key={i}>
             <div className="flex flex-col md:flex-row items-start md:items-center p-3 justify-between w-full">
@@ -120,11 +122,7 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                     <span className="text-[10px] text-light-gray">{ dish.comments.length }</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <button
-                      type="button"
-                    >
-                      <RiBookmarkLine />
-                    </button>
+                    <BookmarkButton />
                     <span className="text-[10px] text-light-gray">20</span>
                   </div>
                 </div>
@@ -138,7 +136,7 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                   ))}
                 </div>
                 <div className="flex flex-col w-full">
-                  {dish.comments.map((comment: any, commentCounter: any) => (
+                  {shortened_comments.map((comment: any, commentCounter: any) => (
                     <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10 space-y-1" key={commentCounter}>
                       <Link href="/">
                         <a className="font-bold text-xs hover:underline">{ comment.user.name }</a>
@@ -163,7 +161,7 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
   )
 }
 
-// Reaction Button Component
+// Reaction Button Component (for dynamic form-controls for each posts)...
 const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
 
   const likes = dish.likes
@@ -199,7 +197,7 @@ const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
   }
 
   return (
-    <button onClick={async () => {
+    <button className="outline-none" onClick={async () => {
       like ? await onUnlike(dishId) : await onLike(dishId)
       setLike(!like)
     }}>
@@ -253,7 +251,7 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
         />
         {!isSubmitting && (
           <button
-            className="flex text-xl px-3 py-2 border-l border-black-matt border-opacity-10 transform hover:scale-95"
+            className="flex text-xl px-3 py-2 border-l border-black-matt border-opacity-10 outline-none transform hover:scale-95"
             type="submit"
           >
             <RiSendPlane2Line />
@@ -271,6 +269,17 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
         </Link>
       </div>
     </form>
+  )
+}
+
+// Bookmark Post Component (for dynamic form-controls for each posts)...
+const BookmarkButton: React.FC = () => {
+  return (
+    <button
+      type="button"
+    >
+      <RiBookmarkLine />
+    </button>
   )
 }
 
