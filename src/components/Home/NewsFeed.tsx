@@ -168,7 +168,13 @@ const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
   const dishId = dish.id
 
   // useState check if the post is liked
-  const [like, setLike] = React.useState(likes.some((liked: { userId: any }) => liked.userId === host.id))
+  const [like, setLike] = React.useState(false)
+
+  // i am using useEffect hook for update the likes state if there is a new post...
+  React.useEffect(() => {
+    // if this (likes.some) is true, setLike state will turn to true...
+    setLike(likes.some((liked: { userId: any }) => liked.userId === host.id))
+  }, [host.id, likes])
 
   // function for liking the post
   async function onLike(dishId: any) {
