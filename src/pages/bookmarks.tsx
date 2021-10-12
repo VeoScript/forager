@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import withSession from '~/lib/Session'
@@ -5,20 +6,25 @@ import prisma from '~/lib/Prisma'
 import Head from 'next/head'
 import React from 'react'
 import Layout from '~/layouts/default'
+import BookmarksList from '~/components/Bookmarks/BookmarksList'
 
 interface TypeProps {
   host: any
+  get_bookmarks: any
 }
 
-const Bookmarks: NextPage<TypeProps> = ({ host }) => {
+const Bookmarks: NextPage<TypeProps> = ({ host, get_bookmarks }) => {
   return (
     <React.Fragment>
       <Head>
         <title>Bookmarks | Forager</title>
       </Head>
       <Layout host={host}>
-        <div className="flex flex-row items-center w-full h-full space-x-5">
-          Bookmarks Page
+        <div className="flex flex-row items-center w-full h-full">
+          <BookmarksList
+            host={host}
+            get_bookmarks={get_bookmarks}
+          />
         </div>
       </Layout>
     </React.Fragment>
@@ -43,9 +49,40 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const get_bookmarks = await prisma.bookmarks.findMany({
+    where: {
+      userId: user.id
+    },
+    orderBy: [
+      {
+        date: 'desc'
+      }
+    ],
+    select: {
+      date: true,
+      dish: {
+        select: {
+          title: true,
+          category: true,
+          ingredients: {
+            select: {
+              ingredient:true
+            }
+          },
+          user: {
+            select: {
+              name: true
+            }
+          }
+        }
+      }
+    }
+  })
+
   return {
     props: {
-      host
+      host,
+      get_bookmarks
     }
   }
 })
