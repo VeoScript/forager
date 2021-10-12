@@ -11,8 +11,9 @@ import {
   RiHeartLine,
   RiHeart2Fill,
   RiBookmarkLine,
+  RiBookmarkFill,
   RiChat1Line,
-  RiSendPlane2Line
+  RiSendPlane2Line,
 } from 'react-icons/ri'
 
 interface TypeProps {
@@ -32,6 +33,11 @@ interface ReactionsType {
 interface CommentFormTypes {
   host: any
   dishId: any
+}
+
+interface BookmarksType {
+  host: any
+  dish: any
 }
 
 const fetcher = async (
@@ -122,8 +128,11 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                     <span className="text-[10px] text-light-gray">{ dish.comments.length }</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <BookmarkButton />
-                    <span className="text-[10px] text-light-gray">20</span>
+                    <BookmarkButton
+                      host={host}
+                      dish={dish}
+                    />
+                    <span className="text-[10px] text-light-gray">{ dish.bookmarks.length }</span>
                   </div>
                 </div>
               </div>
@@ -279,12 +288,57 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
 }
 
 // Bookmark Post Component (for dynamic form-controls for each posts)...
-const BookmarkButton: React.FC = () => {
+const BookmarkButton: React.FC<BookmarksType> = ({ host, dish }) => {
+
+  const bookMarks = dish.bookmarks
+  const dishId = dish.id
+
+  // useState check if the post is liked
+  const [bookmark, setBookmark] = React.useState(false)
+
+  // i am using useEffect hook for update the bookmarks state if there is a new post...
+  React.useEffect(() => {
+    // if this (bookMarks.some) is true, setBookmark state will turn to true...
+    setBookmark(bookMarks.some((bookmarked: { userId: any }) => bookmarked.userId === host.id))
+  }, [host.id, bookMarks])
+
+  // function for adding the post to user bookmarks
+  async function addBookmark(dishId: any) {
+    const userId = host.id
+
+    await fetch('/api/bookmarks/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId, dishId })
+    })
+  }
+
+  // function for remove the post to user bookmarks
+  async function deleteBookmark(dishId: any) {
+    const userId = host.id
+
+    await fetch('/api/bookmarks/delete', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId, dishId })
+    })
+  }
+
   return (
-    <button
-      type="button"
-    >
-      <RiBookmarkLine />
+    <button className="outline-none" onClick={async () => {
+      bookmark ? await deleteBookmark(dishId) : await addBookmark(dishId)
+      setBookmark(!bookmark)
+    }}>
+      {bookmark ? (
+          <RiBookmarkFill className="text-black-dim" />
+        ) : (
+          <RiBookmarkLine />
+        )
+      }
     </button>
   )
 }

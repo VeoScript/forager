@@ -22,6 +22,7 @@ model Users {
   dishes                Dishes[]
   likes                 Likes[]
   comments              Comments[]
+  bookmarks             Bookmarks[]
 }
 
 model Dishes {
@@ -32,6 +33,7 @@ model Dishes {
   date                  String
   likes                 Likes[]
   comments              Comments[]
+  bookmarks             Bookmarks[]
   ingredients           Ingredients[]
   user                  Users                                   @relation(fields: [userId], references: [id])
   userId                String
@@ -56,6 +58,15 @@ model Likes {
 model Comments {
   id                    String                @id               @default(uuid())
   comment               String
+  date                  String
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id])
+  dishId                String
+  user                  Users                                   @relation(fields: [userId], references: [id])
+  userId                String
+}
+
+model Bookmarks {
+  id                    String                @id               @default(uuid())
   date                  String
   dish                  Dishes                                  @relation(fields: [dishId], references: [id])
   dishId                String

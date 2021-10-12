@@ -15,6 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       description: true,
       date: true,
       ingredients: true,
+      bookmarks: true,
       likes: {
         select: {
           id: true,
