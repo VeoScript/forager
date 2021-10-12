@@ -60,6 +60,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
       description: true,
       date: true,
       ingredients: true,
+      bookmarks: true,
       likes: {
         select: {
           id: true,
