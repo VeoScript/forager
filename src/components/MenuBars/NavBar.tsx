@@ -49,7 +49,7 @@ const NavBar: React.FC<TypeProps> = ({ host, setMenuOpen }) => {
             <input
               className="font-normal text-xs w-full p-2 outline-none bg-transparent"
               type="text"
-              placeholder="Search" />
+              placeholder="Search Ingredients" />
           </div>
         </div>
         <div className="hidden md:flex justify-end w-full space-x-3">
