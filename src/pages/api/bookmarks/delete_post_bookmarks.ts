@@ -4,7 +4,7 @@ import prisma from '~/lib/Prisma'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const delete_bookmark = await prisma.bookmarks.deleteMany({
     where: {
-      id: req.body.bookmarkId,
+      dishId: req.body.dishId,
       userId: req.body.userId
     }
   })
