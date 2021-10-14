@@ -80,6 +80,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
           date: true,
           user: {
             select: {
+              id: true,
               name: true
             }
           }
