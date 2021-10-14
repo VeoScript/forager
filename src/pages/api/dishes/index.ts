@@ -35,6 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           date: true,
           user: {
             select: {
+              id: true,
               name: true
             }
           }

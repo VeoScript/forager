@@ -14,6 +14,7 @@ import {
   RiBookmarkFill,
   RiChat1Line,
   RiSendPlane2Line,
+  RiChatDeleteLine
 } from 'react-icons/ri'
 
 interface TypeProps {
@@ -33,6 +34,11 @@ interface ReactionsType {
 interface CommentFormTypes {
   host: any
   dishId: any
+}
+
+interface DeleteComment {
+  host: any
+  comment: any
 }
 
 interface BookmarksType {
@@ -146,14 +152,22 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                 </div>
                 <div className="flex flex-col w-full">
                   {shortened_comments.map((comment: any, commentCounter: any) => (
-                    <div className="flex flex-col px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10 space-y-1" key={commentCounter}>
-                      <Link href="/">
-                        <a className="font-bold text-xs hover:underline">{ comment.user.name }</a>
-                      </Link>
-                      <p className="font-normal text-[11px]">{ comment.comment }</p>
-                      <span className="font-normal text-[10px] text-light-gray text-opacity-80">
-                        <Moment date={ comment.date } fromNow />
-                      </span>
+                    <div className="flex flex-row items-center justify-between w-full px-3 py-3 bg-ghost-white border-b border-black-matt border-opacity-10" key={commentCounter}>
+                      <div className="flex flex-col space-y-1">
+                        <Link href="/">
+                          <a className="font-bold text-xs hover:underline">{ comment.user.name }</a>
+                        </Link>
+                        <p className="font-normal text-[11px]">{ comment.comment }</p>
+                        <span className="font-normal text-[10px] text-light-gray text-opacity-80">
+                          <Moment date={ comment.date } fromNow />
+                        </span>
+                      </div>
+                      {host.id === comment.user.id && (
+                        <DeleteComment
+                          host={host}
+                          comment={comment}
+                        />
+                      )}
                     </div>
                   ))}
                 </div>
@@ -170,7 +184,7 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
   )
 }
 
-// Reaction Button Component (for dynamic form-controls for each posts)...
+// Reaction Button Component (for dynamic form-controls in each posts)...
 const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
 
   const likes = dish.likes
@@ -226,7 +240,7 @@ const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
   )
 }
 
-// CommentForm Component (for dynamic form-controls for each posts)...
+// CommentForm Component (for dynamic form-controls in each posts)...
 const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
   const {
     handleSubmit,
@@ -257,16 +271,16 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
 
   return (
     <form onSubmit={handleSubmit(onComment)} className="flex flex-col items-center w-full">
-      <div className="flex items-center w-full py-3 bg-pure-white border-b border-black-matt border-opacity-10">
+      <div className="flex items-center w-full bg-pure-white border-b border-black-matt border-opacity-10">
         <input
-          className="font-normal text-xs w-full px-5 outline-none bg-transparent"
+          className="font-normal text-xs w-full px-5 py-3 outline-none bg-transparent"
           type="text"
           placeholder="Add a comment..."
           {...register('commentbox', { required: true })}
         />
         {!isSubmitting && (
           <button
-            className="flex text-xl px-3 py-2 border-l border-black-matt border-opacity-10 outline-none transform hover:scale-95"
+            className="flex text-xl px-3 border-l border-black-matt border-opacity-10 outline-none transform hover:scale-95"
             type="submit"
           >
             <RiSendPlane2Line />
@@ -287,7 +301,30 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
   )
 }
 
-// Bookmark Post Component (for dynamic form-controls for each posts)...
+// Delete Comment Function (for dynamic form-controls in each posts)
+const DeleteComment: React.FC<DeleteComment> = ({ host, comment }) => {
+  const userId = host.id
+  const commentId = comment.id
+  return (
+    <button
+      className="transition ease-in-out duration-200 transform hover:scale-95"
+      type="button"
+      onClick={async () => {
+        await fetch('/api/comments/delete', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ userId, commentId })
+        })
+      }}
+    >
+      <RiChatDeleteLine />
+    </button>
+  )
+}
+
+// Bookmark Post Component (for dynamic form-controls in each posts)...
 const BookmarkButton: React.FC<BookmarksType> = ({ host, dish }) => {
 
   const bookMarks = dish.bookmarks
