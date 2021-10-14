@@ -410,7 +410,7 @@ const BookmarkButton: React.FC<BookmarksType> = ({ host, dish }) => {
   async function deleteBookmark(dishId: any) {
     const userId = host.id
 
-    await fetch('/api/bookmarks/delete', {
+    await fetch('/api/bookmarks/delete_post_bookmarks', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

@@ -59,6 +59,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
       }
     ],
     select: {
+      id: true,
       date: true,
       dish: {
         select: {
