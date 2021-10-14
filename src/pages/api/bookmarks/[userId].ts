@@ -16,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       date: true,
       dish: {
         select: {
+          id: true,
           title: true,
           category: true,
           ingredients: {
@@ -25,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
           user: {
             select: {
+              id: true,
               name: true
             }
           }

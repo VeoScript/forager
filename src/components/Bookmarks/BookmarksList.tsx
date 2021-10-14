@@ -8,6 +8,11 @@ interface TypeProps {
   get_bookmarks: any
 }
 
+interface RemoveBookmarkTypes {
+  dishId: any
+  userId: any
+}
+
 const fetcher = async (
   input: RequestInfo,
   init: RequestInit,
@@ -47,24 +52,88 @@ const BookmarksList: React.FC<TypeProps> = ({ host, get_bookmarks }) => {
             <div className="flex flex-col items-start w-full max-w-full px-3 py-0 md:px-0">
               <p className="font-medium text-sm">{ bookmarks.dish.ingredients[0].ingredient }</p>
             </div>
-            <div className="flex flex-row justify-start md:justify-end w-full max-w-xs px-3 pb-2 md:px-0 space-x-1">
+            <div className="flex flex-row justify-start md:justify-end w-full max-w-xs">
               <button
                 className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-light-gray outline-none"
                 type="button"
               >
                 View
               </button>
-              <button
-                className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-red-500 hover:text-red-500 outline-none"
-                type="button"
-              >
-                Remove
-              </button>
+              <RemoveBookmark
+                userId={bookmarks.dish.user.id}
+                dishId={bookmarks.dish.id}
+              />
             </div>
           </div>
         ))}
       </div>
     </div>
+  )
+}
+
+// Delete Comment Function (for dynamic form-controls in each posts)
+const RemoveBookmark: React.FC<RemoveBookmarkTypes> = ({ userId, dishId }) => {
+  const [deleteIsOpen, setDeleteIsOpen] = React.useState(false)
+  return (
+    <React.Fragment>
+      <button
+        className="flex px-3 py-2 ml-1 text-xs border border-black-matt border-opacity-10 hover:border-red-500 hover:text-red-500 outline-none"
+        type="button"
+        onClick={() => setDeleteIsOpen(true)}
+      >
+        Remove
+      </button>
+      {deleteIsOpen && (
+        <React.Fragment>
+          <button 
+            className={`${deleteIsOpen ? 'z-10 block fixed inset-0 left-0 w-full h-full overflow-hidden bg-black-matt bg-opacity-50 cursor-default focus:outline-none' : 'hidden'}`}
+            type="button"
+            onClick={() => {
+              setDeleteIsOpen(false)
+            }} 
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center w-full">
+            <div className="flex flex-row items-center justify-center align-middle z-10 w-full max-w-sm shadow-sm bg-pure-white border border-black-matt border-opacity-10">
+              <div className="flex flex-col w-full p-3">
+                <div className="flex w-full px-3 py-2">
+                  <span className="font-bold text-sm">Remove Bookmark</span>
+                </div>
+                <div className="flex w-full px-3 py-1">
+                  <span className="font-normal text-xs">
+                    Remove this bookmark permanently?
+                  </span>
+                </div>
+                <div className="flex items-center justify-end w-full space-x-1 px-3 py-2">
+                  <button
+                    className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-light-gray outline-none"
+                    type="button"
+                    onClick={() => setDeleteIsOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-red-500 hover:text-red-500 outline-none"
+                    type="button"
+                    onClick={async () => {
+                      await fetch('/api/bookmarks/delete', {
+                        method: 'DELETE',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ userId, dishId })
+                      })
+                      setDeleteIsOpen(false)
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      )}
+    </React.Fragment>
   )
 }
 
