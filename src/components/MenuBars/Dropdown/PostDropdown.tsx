@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import EditPost from './EditPost'
-import DeletePost from './DeletePost'
+import EditPost from '../../PostsCard/Update/EditPost'
+import DeletePost from '../../PostsCard/Delete/DeletePost'
 import { RiMoreFill } from 'react-icons/ri'
 
 interface TypeProps {

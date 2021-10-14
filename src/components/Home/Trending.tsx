@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Credits from './Credits'
-import CreateModal from '../Create/CreateModal'
+import CreateModal from '../PostsCard/Create/CreateModal'
 import { trending } from '~/mock'
 
 interface TypeProps {
