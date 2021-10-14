@@ -62,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
       date: true,
       dish: {
         select: {
+          id: true,
           title: true,
           category: true,
           ingredients: {
@@ -71,6 +72,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
           },
           user: {
             select: {
+              id: true,
               name: true
             }
           }

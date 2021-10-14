@@ -354,6 +354,7 @@ const DeleteComment: React.FC<DeleteCommentTypes> = ({ host, comment }) => {
                         },
                         body: JSON.stringify({ userId, commentId })
                       })
+                      setDeleteIsOpen(false)
                     }}
                   >
                     Delete
