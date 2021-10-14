@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import Moment from 'react-moment'
 import useSWR from 'swr'
+import PostDropdown from './Modals/PostDropdown'
 import Spinner2 from '~/utils/Spinner2'
 import IngredientsIcon from '~/utils/Icons/Ingredients'
 import { motion } from 'framer-motion'
@@ -110,9 +111,17 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-full py-5 px-3 space-y-5 border-t border-b border-black-matt border-opacity-10">
-              <span className="font-normal text-sm">{ dish.description }</span>
-              <span className="font-normal text-[10px]"><Moment date={ dish.date } fromNow /></span>
+            <div className="flex flex-row items-center justify-between w-full py-5 px-3 border-t border-b border-black-matt border-opacity-10">
+              <div className="flex flex-col w-full space-y-5">
+                <span className="font-normal text-sm">{ dish.description }</span>
+                <span className="font-normal text-[10px]"><Moment date={ dish.date } fromNow /></span>
+              </div>
+              {host.id === dish.user.id && (
+                <PostDropdown
+                  host={host}
+                  dish={dish}
+                />
+              )}
             </div>
             <div className="flex flex-col w-full mt-2 space-y-2">
               <div className="flex flex-row items-center justify-between w-full px-3">
