@@ -1,7 +1,6 @@
 import React from 'react'
-import EditForm from './Modal/EditForm'
+import EditForm from './EditForm'
 import { Dialog, Transition } from '@headlessui/react'
-import { RiAddBoxLine } from 'react-icons/ri'
 
 interface TypeProps {
   host: any

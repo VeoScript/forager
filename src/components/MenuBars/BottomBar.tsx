@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import CreateModal from '../Create/CreateModal'
+import CreateModal from '../PostsCard/Create/CreateModal'
 import { useRouter } from 'next/router'
 import {
   RiSearchLine,
