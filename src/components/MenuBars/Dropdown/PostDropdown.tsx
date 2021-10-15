@@ -43,6 +43,8 @@ const PostDropdown: React.FC<TypeProps> = ({ host, dish }) => {
                     setIsDropdown={setIsDropdown}
                   />
                   <DeletePost
+                    host={host}
+                    dish={dish}
                     setIsDropdown={setIsDropdown}
                   />
                 </div>
