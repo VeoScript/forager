@@ -24,7 +24,7 @@ const fetcher = async (
 
 const SignInComponent: React.FC = () => {
 
-  const { data: users } = useSWR('/api/auth/users', fetcher, {
+  const { data: users } = useSWR(`/api/auth/${process.env.AUTH_SECRET}`, fetcher, {
     refreshInterval: 1000
   })
 
