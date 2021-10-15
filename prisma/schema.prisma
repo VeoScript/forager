@@ -35,23 +35,23 @@ model Dishes {
   comments              Comments[]
   bookmarks             Bookmarks[]
   ingredients           Ingredients[]
-  user                  Users                                   @relation(fields: [userId], references: [id])
+  user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
 }
 
 model Ingredients {
   id                    String                @id               @default(uuid())
   ingredient            String
-  dish                  Dishes                                  @relation(fields: [dishId], references: [id])
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
   dishId                String
 }
 
 model Likes {
   id                    String                @id               @default(uuid())
   date                  String
-  dish                  Dishes                                  @relation(fields: [dishId], references: [id])
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
   dishId                String
-  user                  Users                                   @relation(fields: [userId], references: [id])
+  user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
 }
 
@@ -59,17 +59,17 @@ model Comments {
   id                    String                @id               @default(uuid())
   comment               String
   date                  String
-  dish                  Dishes                                  @relation(fields: [dishId], references: [id])
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
   dishId                String
-  user                  Users                                   @relation(fields: [userId], references: [id])
+  user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
 }
 
 model Bookmarks {
   id                    String                @id               @default(uuid())
   date                  String
-  dish                  Dishes                                  @relation(fields: [dishId], references: [id])
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
   dishId                String
-  user                  Users                                   @relation(fields: [userId], references: [id])
+  user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
 }
