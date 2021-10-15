@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { RiSearchLine } from 'react-icons/ri'
+import { motion } from 'framer-motion'
+import { RiSearchLine, RiBookmarkLine } from 'react-icons/ri'
 
 interface TypeProps {
   host: any
@@ -30,7 +31,7 @@ const BookmarksList: React.FC<TypeProps> = ({ host, get_bookmarks }) => {
   })
 
   return (
-    <div className="flex flex-col w-full h-full max-h-full overflow-hidden border border-black-matt border-opacity-10">
+    <div className="flex flex-col w-full h-full max-h-full overflow-hidden border-0 md:border md:border-black-matt md:border-opacity-10">
       <div className="flex flex-col md:flex-row items-center justify-between w-full pt-5 pb-3 px-0 md:px-3 space-y-2 md:space-y-0 border-b border-black-matt border-opacity-10">
         <h1 className="font-bold text-sm">BOOKMARKS</h1>
         <div className="flex items-center w-full max-w-[20rem] px-2 bg-light-gray bg-opacity-5 border border-black-matt border-opacity-10 focus-within:border-light-gray">
@@ -42,6 +43,17 @@ const BookmarksList: React.FC<TypeProps> = ({ host, get_bookmarks }) => {
         </div>
       </div>
       <div className="flex flex-col w-full h-full max-h-[30rem] pb-3 md:pb-0 overflow-y-auto">
+        {get_user_bookmarks.length === 0 && (
+          <motion.div
+            initial={{ y: -500 }}
+            animate={{ y: 0 }}
+            transition={{ ease: "easeOut", duration: 1 }}
+            className="flex flex-col justify-center items-center w-full h-full py-10 md:py-20 space-y-2"
+          >
+            <RiBookmarkLine className="w-12 h-12 text-black-matt text-opacity-50" />
+            <h1 className="font-normal text-sm text-light-gray">No bookmarks at all, save your first bookmark...</h1>
+          </motion.div>
+        )}
         {get_user_bookmarks.map((bookmarks: any, i: number) => (
           <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between w-full p-0 md:p-3 border-b border-black-matt border-opacity-10" key={i}>
             <div className="flex flex-col w-full max-w-full md:max-w-xs p-3 md:p-0 border-b md:border-0 border-black-matt border-opacity-10">
