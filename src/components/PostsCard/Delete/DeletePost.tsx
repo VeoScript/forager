@@ -1,10 +1,12 @@
 import React from 'react'
 
 interface TypeProps {
+  host: any
+  dish: any
   setIsDropdown: any
 }
 
-const DeletePost: React.FC<TypeProps> = ({ setIsDropdown }) => {
+const DeletePost: React.FC<TypeProps> = ({ host, dish, setIsDropdown }) => {
 
   const [deleteIsOpen, setDeleteIsOpen] = React.useState(false)
 
@@ -52,6 +54,16 @@ const DeletePost: React.FC<TypeProps> = ({ setIsDropdown }) => {
                   className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-red-500 hover:text-red-500 outline-none"
                   type="button"
                   onClick={async () => {
+                    const userId = host.id
+                    const dishId = dish.id
+
+                    await fetch('/api/dishes/delete', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({ userId, dishId })
+                    })
                     setDeleteIsOpen(false)
                     setIsDropdown(false)
                   }}
