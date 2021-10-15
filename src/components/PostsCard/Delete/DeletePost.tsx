@@ -18,7 +18,7 @@ const DeletePost: React.FC<TypeProps> = ({ setIsDropdown }) => {
         <span className="text-xs">Delete</span>
       </button>
       {deleteIsOpen && (
-        <div className="fixed z-20 inset-0 flex flex-col items-center justify-center w-full">
+        <div className="fixed z-20 inset-0 flex flex-col items-center justify-center w-full px-3">
           <button 
             className={`${deleteIsOpen ? 'z-10 block fixed inset-0 left-0 w-full h-full overflow-hidden bg-black-matt bg-opacity-50 cursor-default focus:outline-none' : 'hidden'}`}
             type="button"

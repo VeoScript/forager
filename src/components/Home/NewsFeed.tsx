@@ -111,16 +111,18 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row items-center justify-between w-full py-5 px-3 border-t border-b border-black-matt border-opacity-10">
+            <div className="flex flex-row items-start justify-between w-full py-5 px-3 border-t border-b border-black-matt border-opacity-10">
               <div className="flex flex-col w-full space-y-5">
                 <span className="font-normal text-sm">{ dish.description }</span>
                 <span className="font-normal text-[10px]"><Moment date={ dish.date } fromNow /></span>
               </div>
               {host.id === dish.user.id && (
-                <PostDropdown
-                  host={host}
-                  dish={dish}
-                />
+                <div className="flex w-10 px-5">
+                  <PostDropdown
+                    host={host}
+                    dish={dish}
+                  />
+                </div>
               )}
             </div>
             <div className="flex flex-col w-full mt-2 space-y-2">
@@ -333,7 +335,7 @@ const DeleteComment: React.FC<DeleteCommentTypes> = ({ host, comment }) => {
               setDeleteIsOpen(false)
             }} 
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center w-full">
+          <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-3">
             <div className="flex flex-row items-center justify-center align-middle z-10 w-full max-w-sm shadow-sm bg-pure-white border border-black-matt border-opacity-10">
               <div className="flex flex-col w-full p-3">
                 <div className="flex w-full px-3 py-2">
@@ -425,7 +427,7 @@ const BookmarkButton: React.FC<BookmarksType> = ({ host, dish }) => {
       setBookmark(!bookmark)
     }}>
       {bookmark ? (
-          <RiBookmarkFill className="text-black-dim" />
+          <RiBookmarkFill className="text-[#00B3F3]" />
         ) : (
           <RiBookmarkLine />
         )
