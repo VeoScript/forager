@@ -32,7 +32,7 @@ const BookmarksList: React.FC<TypeProps> = ({ host, get_bookmarks }) => {
 
   return (
     <div className="flex flex-col w-full h-full max-h-full overflow-hidden border-0 md:border md:border-black-matt md:border-opacity-10">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full pt-5 pb-3 px-0 md:px-3 space-y-2 md:space-y-0 border-b border-black-matt border-opacity-10">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full pt-5 md:pt-3 pb-3 md:pb-3 px-0 md:px-3 space-y-2 md:space-y-0 border-b border-black-matt border-opacity-10">
         <h1 className="font-bold text-sm">BOOKMARKS</h1>
         <div className="flex items-center w-full max-w-[20rem] px-2 bg-light-gray bg-opacity-5 border border-black-matt border-opacity-10 focus-within:border-light-gray">
           <RiSearchLine className="text-black-matt text-opacity-50" />
@@ -83,7 +83,7 @@ const BookmarksList: React.FC<TypeProps> = ({ host, get_bookmarks }) => {
   )
 }
 
-// Delete Comment Function (for dynamic form-controls in each posts)
+// Remove Bookmark Function
 const RemoveBookmark: React.FC<RemoveBookmarkTypes> = ({ userId, bookmarkId }) => {
   const [deleteIsOpen, setDeleteIsOpen] = React.useState(false)
   return (
@@ -104,7 +104,7 @@ const RemoveBookmark: React.FC<RemoveBookmarkTypes> = ({ userId, bookmarkId }) =
               setDeleteIsOpen(false)
             }} 
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center w-full">
+          <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-3">
             <div className="flex flex-row items-center justify-center align-middle z-10 w-full max-w-sm shadow-sm bg-pure-white border border-black-matt border-opacity-10">
               <div className="flex flex-col w-full p-3">
                 <div className="flex w-full px-3 py-2">
