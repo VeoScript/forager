@@ -4,47 +4,17 @@ import Link from 'next/link'
 import Moment from 'react-moment'
 import useSWR from 'swr'
 import PostDropdown from '../MenuBars/Dropdown/PostDropdown'
-import Spinner2 from '~/utils/Spinner2'
 import IngredientsIcon from '~/utils/Icons/Ingredients'
+import ReactionButton from '~/components/PostsCard/Interactions/ReactionButton'
+import CommentForm from '~/components/PostsCard/Interactions/CommentForm'
+import DeleteComment from '~/components/PostsCard/Interactions/DeleteComment'
+import BookmarkButton from '~/components/PostsCard/Interactions/BookmarkButton'
 import { motion } from 'framer-motion'
-import { useForm } from 'react-hook-form'
-import {
-  RiHeartLine,
-  RiHeart2Fill,
-  RiBookmarkLine,
-  RiBookmarkFill,
-  RiChat1Line,
-  RiSendPlane2Line,
-  RiChatDeleteLine
-} from 'react-icons/ri'
+import { RiChat1Line } from 'react-icons/ri'
 
 interface TypeProps {
   host: any
   dishes: any
-}
-
-interface FormData {
-  commentbox: String
-}
-
-interface ReactionsType {
-  host: any
-  dish: any
-}
-
-interface CommentFormTypes {
-  host: any
-  dishId: any
-}
-
-interface DeleteCommentTypes {
-  host: any
-  comment: any
-}
-
-interface BookmarksType {
-  host: any
-  dish: any
 }
 
 const fetcher = async (
@@ -85,31 +55,27 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
         return (
           <div className="flex flex-col w-full max-w-full h-auto border border-black-matt border-opacity-10 bg-pure-white transition ease-in-out duration-200 hover:shadow-md" key={i}>
             <div className="flex flex-col md:flex-row items-start md:items-center p-3 justify-between w-full">
-              <div className="flex flex-row items-center justify-start space-x-2">
-                <Link href="/">
-                  <a>
-                    <img
-                      className="w-10 h-10 object-cover rounded-full bg-dark-gray bg-opacity-20"
-                      src={ !dish.user.avatar ? `https://ui-avatars.com/api/?name=${dish.user.name}` : dish.user.avatar }
-                      alt="profile"
-                    />
-                  </a>
-                </Link>
-                <div className="flex flex-col">
-                  <Link href="/">
-                    <a className="font-semibold text-sm">{ dish.user.name }</a>
-                  </Link>
-                  <Link href="/">
-                    <a className="font-light text-xs hover:underline">@{ dish.user.username }</a>
-                  </Link>
-                </div>
-              </div>
-              <div className="flex flex-row items-center justify-end mt-5 md:mt-0">
-                <div className="flex flex-col items-start md:items-end w-full">
-                  <h3 className="font-semibold text-sm">{ dish.title }</h3>
-                  <h6 className="font-light text-xs">{ dish.category }</h6>
-                </div>
-              </div>
+              <Link href="/">
+                <a className="flex flex-row items-center justify-start space-x-2">
+                  <img
+                    className="w-10 h-10 object-cover rounded-full bg-dark-gray bg-opacity-20"
+                    src={ !dish.user.avatar ? `https://ui-avatars.com/api/?name=${dish.user.name}` : dish.user.avatar }
+                    alt="profile"
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-sm">{ dish.user.name }</span>
+                    <span className="font-light text-xs hover:underline">@{ dish.user.username }</span>
+                  </div>
+                </a>
+              </Link>
+              <Link href={`/${dish.id}`}>
+                <a className="flex flex-row items-center justify-end mt-5 md:mt-0">
+                  <div className="flex flex-col items-start md:items-end w-full">
+                    <h3 className="font-semibold text-sm hover:underline">{ dish.title }</h3>
+                    <h6 className="font-light text-xs">{ dish.category }</h6>
+                  </div>
+                </a>
+              </Link>
             </div>
             <div className="flex flex-row items-start justify-between w-full py-5 px-3 border-t border-b border-black-matt border-opacity-10">
               <div className="flex flex-col w-full space-y-5">
@@ -186,253 +152,17 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                   host={host}
                   dishId={dish.id}
                 />
+                <div className="flex justify-center w-full py-2">
+                  <Link href={`/${dish.id}`}>
+                    <a className="font-normal text-xs hover:underline">See more comments...</a>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         )
       })}
     </div>
-  )
-}
-
-// Reaction Button Component (for dynamic form-controls in each posts)...
-const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
-
-  const likes = dish.likes
-  const dishId = dish.id
-
-  // useState check if the post is liked
-  const [like, setLike] = React.useState(false)
-
-  // i am using useEffect hook for update the likes state if there is a new post...
-  React.useEffect(() => {
-    // if this (likes.some) is true, setLike state will turn to true...
-    setLike(likes.some((liked: { userId: any }) => liked.userId === host.id))
-  }, [host.id, likes])
-
-  // function for liking the post
-  async function onLike(dishId: any) {
-    const userId = host.id
-
-    await fetch('/api/likes/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userId, dishId })
-    })
-  }
-
-  // function for unliking the post
-  async function onUnlike(dishId: any) {
-    const userId = host.id
-
-    await fetch('/api/likes/delete', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userId, dishId })
-    })
-  }
-
-  return (
-    <button className="outline-none" onClick={async () => {
-      like ? await onUnlike(dishId) : await onLike(dishId)
-      setLike(!like)
-    }}>
-      {like ? (
-          <RiHeart2Fill className="text-red-500" />
-        ) : (
-          <RiHeartLine />
-        )
-      }
-    </button>
-  )
-}
-
-// CommentForm Component (for dynamic form-controls in each posts)...
-const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
-  const {
-    handleSubmit,
-    register,
-    reset,
-    formState: {
-      isSubmitting
-    }
-  } = useForm()
-
-  async function onComment(formData: FormData) {
-    const userId = host.id
-    const commentbox = formData.commentbox
-    
-    await fetch('/api/comments/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        commentbox,
-        userId,
-        dishId
-      })
-    })
-    reset()
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onComment)} className="flex flex-col items-center w-full">
-      <div className="flex items-center w-full bg-pure-white border-b border-black-matt border-opacity-10">
-        <input
-          className="font-normal text-xs w-full px-5 py-3 outline-none bg-transparent"
-          type="text"
-          placeholder="Add a comment..."
-          {...register('commentbox', { required: true })}
-        />
-        {!isSubmitting && (
-          <button
-            className="flex text-xl px-3 border-l border-black-matt border-opacity-10 outline-none transform hover:scale-95"
-            type="submit"
-          >
-            <RiSendPlane2Line />
-          </button>
-        )}
-        {isSubmitting && (
-          <div className="flex text-xl px-1.5 border-l border-black-matt border-opacity-10 transform hover:scale-95">
-            <Spinner2 />
-          </div>
-        )}
-      </div>
-      <div className="flex justify-center w-full py-2">
-        <Link href="/">
-          <a className="font-normal text-xs hover:underline">See more comments...</a>
-        </Link>
-      </div>
-    </form>
-  )
-}
-
-// Delete Comment Function (for dynamic form-controls in each posts)
-const DeleteComment: React.FC<DeleteCommentTypes> = ({ host, comment }) => {
-  const [deleteIsOpen, setDeleteIsOpen] = React.useState(false)
-  const userId = host.id
-  const commentId = comment.id
-  return (
-    <React.Fragment>
-      <button
-        className="transition ease-in-out duration-200 transform hover:scale-95"
-        type="button"
-        onClick={() => setDeleteIsOpen(true)}
-      >
-        <RiChatDeleteLine className="text-black text-opacity-30" />
-      </button>
-      {deleteIsOpen && (
-        <React.Fragment>
-          <button 
-            className={`${deleteIsOpen ? 'z-10 block fixed inset-0 w-full h-full bg-black-matt bg-opacity-50 cursor-default focus:outline-none' : 'hidden'}`}
-            type="button"
-            onClick={() => {
-              setDeleteIsOpen(false)
-            }} 
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-3">
-            <div className="flex flex-row items-center justify-center align-middle z-10 w-full max-w-sm shadow-sm bg-pure-white border border-black-matt border-opacity-10">
-              <div className="flex flex-col w-full p-3">
-                <div className="flex w-full px-3 py-2">
-                  <span className="font-bold text-sm">Delete Comment</span>
-                </div>
-                <div className="flex w-full px-3 py-1">
-                  <span className="font-normal text-xs">
-                    Delete your comment permanently?
-                  </span>
-                </div>
-                <div className="flex items-center justify-end w-full space-x-1 px-3 py-2">
-                  <button
-                    className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-light-gray outline-none"
-                    type="button"
-                    onClick={() => setDeleteIsOpen(false)}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-red-500 hover:text-red-500 outline-none"
-                    type="button"
-                    onClick={async () => {
-                      await fetch('/api/comments/delete', {
-                        method: 'DELETE',
-                        headers: {
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ userId, commentId })
-                      })
-                      setDeleteIsOpen(false)
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </React.Fragment>
-      )}
-    </React.Fragment>
-  )
-}
-
-// Bookmark Post Component (for dynamic form-controls in each posts)...
-const BookmarkButton: React.FC<BookmarksType> = ({ host, dish }) => {
-
-  const bookMarks = dish.bookmarks
-  const dishId = dish.id
-
-  // useState check if the post is already in the user bookmarks
-  const [bookmark, setBookmark] = React.useState(false)
-
-  // i am using useEffect hook for update the bookmarks state if there is a new post...
-  React.useEffect(() => {
-    // if this (bookMarks.some) is true, setBookmark state will turn to true...
-    setBookmark(bookMarks.some((bookmarked: { userId: any }) => bookmarked.userId === host.id))
-  }, [host.id, bookMarks])
-
-  // function for adding the post to user bookmarks
-  async function addBookmark(dishId: any) {
-    const userId = host.id
-
-    await fetch('/api/bookmarks/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userId, dishId })
-    })
-  }
-
-  // function for remove the post to user bookmarks
-  async function deleteBookmark(dishId: any) {
-    const userId = host.id
-
-    await fetch('/api/bookmarks/delete_post_bookmarks', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userId, dishId })
-    })
-  }
-
-  return (
-    <button className="outline-none" onClick={async () => {
-      bookmark ? await deleteBookmark(dishId) : await addBookmark(dishId)
-      setBookmark(!bookmark)
-    }}>
-      {bookmark ? (
-          <RiBookmarkFill className="text-[#00B3F3]" />
-        ) : (
-          <RiBookmarkLine />
-        )
-      }
-    </button>
   )
 }
 
