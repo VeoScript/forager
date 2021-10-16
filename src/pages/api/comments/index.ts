@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const get_comments = await prisma.comments.findMany({
     orderBy: [
       {
-        date: 'desc'
+        countId: 'desc'
       }
     ],
     select: {

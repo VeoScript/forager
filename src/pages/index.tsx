@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
   const dishes = await prisma.dishes.findMany({
     orderBy: [
       {
-        date: 'desc'
+        countId: 'desc'
       }
     ],
     select: {
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
       comments: {
         orderBy: [
           {
-            date: 'desc'
+            countId: 'desc'
           }
         ],
         select: {

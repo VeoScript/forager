@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     },
     orderBy: [
       {
-        date: 'desc'
+        countId: 'desc'
       }
     ],
     select: {
