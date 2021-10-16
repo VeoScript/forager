@@ -65,12 +65,11 @@ const BookmarksList: React.FC<TypeProps> = ({ host, get_bookmarks }) => {
               <p className="font-medium text-sm">{ bookmarks.dish.ingredients[0].ingredient }</p>
             </div>
             <div className="flex flex-row justify-start md:justify-end w-full max-w-xs px-3 md:px-0 py-3 md:py-0">
-              <button
-                className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-light-gray outline-none"
-                type="button"
-              >
-                View
-              </button>
+              <Link href={`/${bookmarks.dish.id}`}>
+                <a className="flex px-3 py-2 text-xs border border-black-matt border-opacity-10 hover:border-light-gray outline-none">
+                  View
+                </a>
+              </Link>
               <RemoveBookmark
                 userId={host.id}
                 bookmarkId={bookmarks.id}
