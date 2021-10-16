@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const get_dishes = await prisma.dishes.findMany({
     orderBy: [
       {
-        date: 'desc'
+        countId: 'desc'
       }
     ],
     select: {
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       comments: {
         orderBy: [
           {
-            date: 'desc'
+            countId: 'desc'
           }
         ],
         select: {

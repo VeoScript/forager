@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     },
     orderBy: [
       {
-        date: 'desc'
+        countId: 'desc'
       }
     ],
     select: {

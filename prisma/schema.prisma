@@ -11,6 +11,7 @@ generator client {
 }
 
 model Users {
+  countId               Int                   @unique           @default(autoincrement())                
   id                    String                @id               @default(uuid())
   avatar                String?
   bio                   String?
@@ -26,6 +27,7 @@ model Users {
 }
 
 model Dishes {
+  countId               Int                   @unique           @default(autoincrement())  
   id                    String                @id               @default(uuid())
   title                 String
   category              String
@@ -40,6 +42,7 @@ model Dishes {
 }
 
 model Ingredients {
+  countId               Int                   @unique           @default(autoincrement())   
   id                    String                @id               @default(uuid())
   ingredient            String
   dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
@@ -47,6 +50,7 @@ model Ingredients {
 }
 
 model Likes {
+  countId               Int                   @unique           @default(autoincrement())   
   id                    String                @id               @default(uuid())
   date                  String
   dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
@@ -56,6 +60,7 @@ model Likes {
 }
 
 model Comments {
+  countId               Int                   @unique           @default(autoincrement())  
   id                    String                @id               @default(uuid())
   comment               String
   date                  String
@@ -66,6 +71,7 @@ model Comments {
 }
 
 model Bookmarks {
+  countId               Int                   @unique           @default(autoincrement())   
   id                    String                @id               @default(uuid())
   date                  String
   dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
