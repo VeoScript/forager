@@ -24,6 +24,7 @@ model Users {
   likes                 Likes[]
   comments              Comments[]
   bookmarks             Bookmarks[]
+  activities            Activities[]
 }
 
 model Dishes {
@@ -37,6 +38,7 @@ model Dishes {
   comments              Comments[]
   bookmarks             Bookmarks[]
   ingredients           Ingredients[]
+  activities            Activities[]
   user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
 }
@@ -74,6 +76,17 @@ model Bookmarks {
   countId               Int                   @unique           @default(autoincrement())   
   id                    String                @id               @default(uuid())
   date                  String
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
+  dishId                String
+  user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                String
+}
+
+model Activities {
+  countId               Int                   @unique           @default(autoincrement())   
+  id                    String                @id               @default(uuid())
+  date                  String
+  message               String
   dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
   dishId                String
   user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
