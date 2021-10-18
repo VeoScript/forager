@@ -5,6 +5,7 @@ import prisma from '~/lib/Prisma'
 import Head from 'next/head'
 import React from 'react'
 import Layout from '~/layouts/default'
+import ActivitiesList from '~/components/Activities/ActivitiesList'
 
 interface TypeProps {
   host: any
@@ -17,8 +18,8 @@ const Activities: NextPage<TypeProps> = ({ host }) => {
         <title>Activities | Forager</title>
       </Head>
       <Layout host={host}>
-        <div className="flex flex-row items-center w-full h-full space-x-5">
-          Activities Page
+        <div className="flex flex-row items-center w-full h-full">
+          <ActivitiesList />
         </div>
       </Layout>
     </React.Fragment>

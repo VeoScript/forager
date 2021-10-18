@@ -31,6 +31,7 @@ const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
       },
       body: JSON.stringify({ userId, dishId })
     })
+    onSendActivity()
   }
 
   // function for unliking the post
@@ -43,6 +44,20 @@ const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ userId, dishId })
+    })
+  }
+
+  // function for reporting the like action to the activity
+  async function onSendActivity() {
+    const userId = host.id
+    const message = "liked your post"
+
+    await fetch('/api/activities/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message, userId, dishId })
     })
   }
 
