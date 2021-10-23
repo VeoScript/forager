@@ -11,15 +11,19 @@ import CommentsCard from '~/components/PostsCard/View/CommentsCard'
 interface TypeProps {
   host: any
   dishes: any
+  ingredients: any
 }
 
-const PostDisplay: NextPage<TypeProps> = ({ host, dishes }) => {
+const PostDisplay: NextPage<TypeProps> = ({ host, dishes, ingredients }) => {
   return (
     <React.Fragment>
       <Head>
         <title>{ dishes.title } | Forager</title>
       </Head>
-      <Layout host={host}>
+      <Layout
+        host={host}
+        ingredients={ingredients}
+      >
         <div className="flex flex-col md:flex-row items-start w-full h-full space-y-0 space-x-0 md:space-y-0 md:space-x-2">
           <div className="flex flex-row w-full max-w-full">
             <PostCard
@@ -106,10 +110,26 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const ingredients = await prisma.ingredients.findMany({
+    select: {
+      countId: true,
+      id: true,
+      ingredient: true,
+      dish: {
+        select: {
+          countId: true,
+          id: true,
+          title: true
+        }
+      }
+    }
+  })
+
   return {
     props: {
       host,
-      dishes
+      dishes,
+      ingredients
     }
   }
 })

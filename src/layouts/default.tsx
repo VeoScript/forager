@@ -5,10 +5,11 @@ import BottomBar from '~/components/MenuBars/BottomBar'
 
 interface TypeProps {
   host: any
+  ingredients: any
   children: any
 }
 
-const Layout: React.FC<TypeProps> = ({ host, children }) => {
+const Layout: React.FC<TypeProps> = ({ host, ingredients, children }) => {
   
   const [isMenuOpen, setMenuOpen] = React.useState(false)
   
@@ -18,6 +19,7 @@ const Layout: React.FC<TypeProps> = ({ host, children }) => {
         <div className="relative flex w-full">
           <NavBar
             host={host}
+            ingredients={ingredients}
             setMenuOpen={setMenuOpen}
           />
           <Menu

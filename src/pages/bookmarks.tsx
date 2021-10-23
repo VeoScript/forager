@@ -11,15 +11,19 @@ import BookmarksList from '~/components/Bookmarks/BookmarksList'
 interface TypeProps {
   host: any
   get_bookmarks: any
+  ingredients: any
 }
 
-const Bookmarks: NextPage<TypeProps> = ({ host, get_bookmarks }) => {
+const Bookmarks: NextPage<TypeProps> = ({ host, ingredients, get_bookmarks }) => {
   return (
     <React.Fragment>
       <Head>
         <title>Bookmarks | Forager</title>
       </Head>
-      <Layout host={host}>
+      <Layout
+        host={host}
+        ingredients={ingredients}
+      >
         <div className="flex flex-row items-center w-full h-full">
           <BookmarksList
             host={host}
@@ -82,10 +86,26 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const ingredients = await prisma.ingredients.findMany({
+    select: {
+      countId: true,
+      id: true,
+      ingredient: true,
+      dish: {
+        select: {
+          countId: true,
+          id: true,
+          title: true
+        }
+      }
+    }
+  })
+
   return {
     props: {
       host,
-      get_bookmarks
+      get_bookmarks,
+      ingredients
     }
   }
 })

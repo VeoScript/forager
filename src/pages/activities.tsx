@@ -10,15 +10,19 @@ import ActivitiesList from '~/components/Activities/ActivitiesList'
 interface TypeProps {
   host: any
   activities: any
+  ingredients: any
 }
 
-const Activities: NextPage<TypeProps> = ({ host, activities }) => {
+const Activities: NextPage<TypeProps> = ({ host, activities, ingredients }) => {
   return (
     <React.Fragment>
       <Head>
         <title>Activities | Forager</title>
       </Head>
-      <Layout host={host}>
+      <Layout
+        host={host}
+        ingredients={ingredients}
+      >
         <div className="flex flex-row items-center w-full h-full">
           <ActivitiesList
             host={host}
@@ -82,10 +86,26 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const ingredients = await prisma.ingredients.findMany({
+    select: {
+      countId: true,
+      id: true,
+      ingredient: true,
+      dish: {
+        select: {
+          countId: true,
+          id: true,
+          title: true
+        }
+      }
+    }
+  })
+
   return {
     props: {
       host,
-      activities
+      activities,
+      ingredients
     }
   }
 })

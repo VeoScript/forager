@@ -8,15 +8,19 @@ import Layout from '~/layouts/default'
 
 interface TypeProps {
   host: any
+  ingredients: any
 }
 
-const Explore: NextPage<TypeProps> = ({ host }) => {
+const Explore: NextPage<TypeProps> = ({ host, ingredients }) => {
   return (
     <React.Fragment>
       <Head>
         <title>Explore | Forager</title>
       </Head>
-      <Layout host={host}>
+      <Layout
+        host={host}
+        ingredients={ingredients}
+      >
         <div className="flex flex-row items-center w-full h-full space-x-5">
           Explore Page
         </div>
@@ -43,9 +47,25 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const ingredients = await prisma.ingredients.findMany({
+    select: {
+      countId: true,
+      id: true,
+      ingredient: true,
+      dish: {
+        select: {
+          countId: true,
+          id: true,
+          title: true
+        }
+      }
+    }
+  })
+
   return {
     props: {
-      host
+      host,
+      ingredients
     }
   }
 })
