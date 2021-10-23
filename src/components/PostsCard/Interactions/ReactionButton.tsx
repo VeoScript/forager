@@ -49,15 +49,25 @@ const ReactionButton: React.FC<ReactionsType> = ({ host, dish }) => {
 
   // function for reporting the like action to the activity
   async function onSendActivity() {
-    const userId = host.id
+    const userId = dish.user.id
+    const sender = dish.user.username
+    const recipient = host.username
     const message = "liked your post"
+    const notificationtype = "Like"
 
     await fetch('/api/activities/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ message, userId, dishId })
+      body: JSON.stringify({
+        notificationtype,
+        message,
+        recipient,
+        sender,
+        userId,
+        dishId 
+      })
     })
   }
 

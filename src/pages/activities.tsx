@@ -9,9 +9,10 @@ import ActivitiesList from '~/components/Activities/ActivitiesList'
 
 interface TypeProps {
   host: any
+  activities: any
 }
 
-const Activities: NextPage<TypeProps> = ({ host }) => {
+const Activities: NextPage<TypeProps> = ({ host, activities }) => {
   return (
     <React.Fragment>
       <Head>
@@ -19,7 +20,10 @@ const Activities: NextPage<TypeProps> = ({ host }) => {
       </Head>
       <Layout host={host}>
         <div className="flex flex-row items-center w-full h-full">
-          <ActivitiesList />
+          <ActivitiesList
+            host={host}
+            activities={activities}
+          />
         </div>
       </Layout>
     </React.Fragment>
@@ -44,9 +48,44 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
     }
   })
 
+  const activities = await prisma.activities.findMany({
+    where: {
+      userId: user.id
+    },
+    orderBy: [
+      {
+        countId: 'desc'
+      }
+    ],
+    select: {
+      id: true,
+      date: true,
+      notificationtype: true,
+      read: true,
+      recipient: true,
+      sender: true,
+      message: true,
+      user: {
+        select: {
+          id: true,
+          avatar: true,
+          name: true,
+          username: true
+        }
+      },
+      dish: {
+        select: {
+          id: true,
+          title: true
+        }
+      }
+    }
+  })
+
   return {
     props: {
-      host
+      host,
+      activities
     }
   }
 })

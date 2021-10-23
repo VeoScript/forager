@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import Spinner2 from '~/utils/Spinner2'
 import { useForm } from 'react-hook-form'
 import { RiSendPlane2Line } from 'react-icons/ri'
@@ -10,10 +9,13 @@ interface FormData {
 
 interface CommentFormTypes {
   host: any
-  dishId: any
+  dish: any
 }
 
-const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
+const CommentForm: React.FC<CommentFormTypes> = ({ host, dish }) => {
+
+  const dishId = dish.id
+
   const {
     handleSubmit,
     register,
@@ -38,7 +40,32 @@ const CommentForm: React.FC<CommentFormTypes> = ({ host, dishId }) => {
         dishId
       })
     })
+    onSendActivity(commentbox)
     reset()
+  }
+
+  // function for reporting the like action to the activity
+  async function onSendActivity(commentbox: String) {
+    const userId = dish.user.id
+    const sender = dish.user.username
+    const recipient = host.username
+    const message = `commented "${commentbox}" on your post`
+    const notificationtype = "Comment"
+
+    await fetch('/api/activities/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        notificationtype,
+        message,
+        recipient,
+        sender,
+        userId,
+        dishId 
+      })
+    })
   }
 
   return (

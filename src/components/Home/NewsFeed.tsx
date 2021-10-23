@@ -150,7 +150,7 @@ const NewsFeed: React.FC<TypeProps> = ({ host, dishes }) => {
                 </div>
                 <CommentForm
                   host={host}
-                  dishId={dish.id}
+                  dish={dish}
                 />
                 <div className="flex justify-center w-full py-2">
                   <Link href={`/${dish.id}`}>
