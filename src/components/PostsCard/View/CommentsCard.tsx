@@ -63,7 +63,7 @@ const CommentsCard: React.FC<TypeProps> = ({ host, dishes }) => {
         <div className="flex flex-row items-center justify-between w-full border-t border-black-matt border-opacity-10">
           <CommentForm
             host={host}
-            dishId={dish.id}
+            dish={dish}
           />
         </div>
       </div>

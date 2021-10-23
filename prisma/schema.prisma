@@ -86,9 +86,13 @@ model Activities {
   countId               Int                   @unique           @default(autoincrement())   
   id                    String                @id               @default(uuid())
   date                  String
+  notificationtype      String
+  read                  Boolean                                 @default(false)
+  recipient             String
+  sender                String
   message               String
-  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
-  dishId                String
   user                  Users                                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
+  dish                  Dishes                                  @relation(fields: [dishId], references: [id], onDelete: Cascade)
+  dishId                String       
 }
