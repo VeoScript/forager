@@ -163,13 +163,15 @@ const SearchComponent: React.FC<SearchComponentTypes> = ({ host, ingredients }) 
       })
     }
   }
+
+  // remove duplications of ingredients inside the final_results objects
+  const mapped_ingredient = final_results.map(fr => fr.ingredient)
+  const final_results_distinct = final_results.filter(({ingredient}, index) => !mapped_ingredient.includes(ingredient, index + 1))
   
   // search input filter for searching the ingredient name
-  const search_results = !searchTerm ? final_results : final_results.filter((get: {ingredient: any}) =>
+  const search_results = !searchTerm ? final_results_distinct : final_results_distinct.filter((get: {ingredient: any}) =>
     get.ingredient.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
   )
-
-  console.log(final_results)
 
   return (
     <div className="hidden md:flex justify-center w-full">
