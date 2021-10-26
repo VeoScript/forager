@@ -122,7 +122,7 @@ const PostCard: React.FC<TypeProps> = ({ host, dishes }) => {
         {router.pathname === `/explore/[ingredient]` && (
           <div className="flex justify-center w-full py-2">
             <Link href={`/${dish.id}`}>
-              <a className="font-normal text-xs hover:underline">See more comments...</a>
+              <a className="font-normal text-xs hover:underline">See comments...</a>
             </Link>
           </div>
         )}

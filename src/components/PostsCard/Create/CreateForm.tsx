@@ -165,8 +165,11 @@ const PostCard: React.FC<TypeProps> = ({ host, setIsOpen }) => {
                     <span className="text-xs text-light-gray">Ingredient { index + 1 }</span>
                   </div>
                   <input
-                    className="w-full font-normal text-base outline-none bg-transparent"
+                    className="w-full font-normal text-base outline-none bg-transparent lowercase"
                     type="text"
+                    onInput={(e: any) => {
+                      e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.substring(1)
+                    }}
                     {...register(`selected_ingredient.${index}.value`, { required: true })}
                   />
                 </div>
