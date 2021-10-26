@@ -60,10 +60,10 @@ const NavBar: React.FC<TypeProps> = ({ host, ingredients, setMenuOpen }) => {
           </Link>
           <Link href="/explore">
             <a className="font-light">
-              {router.pathname === '/explore' && (
+              {(router.pathname === '/explore' || router.pathname === '/explore/[ingredient]') && (
                 <RiCompass3Fill className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
               )}
-              {router.pathname !== '/explore' && (
+              {!(router.pathname === '/explore' || router.pathname === '/explore/[ingredient]') && (
                 <RiCompass3Line className="w-6 h-6 transition ease-in-out duration-200 hover:scale-95" />
               )}
             </a>

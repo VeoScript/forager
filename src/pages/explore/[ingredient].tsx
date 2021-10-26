@@ -6,16 +6,15 @@ import Head from 'next/head'
 import React from 'react'
 import Layout from '~/layouts/default'
 import PostCard from '~/components/PostsCard/View/PostCard'
+import TopComponent from '~/components/Explore/TopComponent'
 
 interface TypeProps {
   host: any
+  ingredient: any
   ingredients: any
 }
 
-const ExploreIngredients: NextPage<TypeProps> = ({ host, ingredients }) => {
-
-  console.log(ingredients)
-
+const ExploreIngredients: NextPage<TypeProps> = ({ host, ingredient, ingredients }) => {
   return (
     <React.Fragment>
       <Head>
@@ -27,6 +26,7 @@ const ExploreIngredients: NextPage<TypeProps> = ({ host, ingredients }) => {
       >
         <div className="flex flex-row items-center w-full h-full space-x-5">
           <div className="flex flex-col items-center w-full space-y-3">
+            <TopComponent ingredient={ingredient} />
             {ingredients.map((ingredient: any, i: number) => (
               <div className="flex justify-center w-full max-w-xl" key={i}>
                 <PostCard
@@ -130,6 +130,7 @@ export const getServerSideProps: GetServerSideProps = withSession(async function
   return {
     props: {
       host,
+      ingredient,
       ingredients
     }
   }
